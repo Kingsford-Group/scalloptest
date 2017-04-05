@@ -56,7 +56,9 @@ StringTie | v1.3.2d | Transcript Assembler | (https://ccb.jhu.edu/software/strin
 TransComb | v.1.0 | Transcript Assembler | (https://sourceforge.net/projects/transcriptomeassembly/files/)
 gffcompare | v0.9.9c | Evaluate predicted transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
 
-We include in the release the binary executables of these four programs for linux and macOS platforms.
+We include in `programs/linux_x86_64` and `programs/macOS` the binary executables of these four programs for linux and macOS platforms.
+If these binary versions cannot execute on your machine, you need to download and compile the source code.
+After that, link them to `programs/linux_x86_64` or `programs/macOS`.
 
 # Run the Methods
 
