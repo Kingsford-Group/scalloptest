@@ -17,17 +17,16 @@ For each of these 10 samples, we align it with three RNA-seq aligners,
 [TopHat2](https://ccb.jhu.edu/software/tophat/index.shtml),
 [STAR](https://github.com/alexdobin/STAR), and
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
-Use this [link](https://cmu.box.com/s/j4d1ysta09q786drxf4z4evt49sevibg) to download these reads alignment files.
+Use this [link](https://cmu.box.com/s/zeaxc7iwiis466g1idphtojtarcb6hf4) to download these reads alignment files.
 **NOTE:** The total 30 reads alignments files (in `bam` format) take about 270GB storage space.
 
 The second dataset, namely **ENCODE65**,
 contains 65 human RNA-seq samples downloaded from [ENCODE project (2013--present)](https://www.encodeproject.org/).
 This dataset includes 50 strand-specific samples, and 15 non-strand samples, all of which use paired-end protocols.
-These samples have pre-computed reads alignments, and can be downloaded by the script in `bin` directory:
+These samples have pre-computed reads alignments, and can be downloaded by the script in `bin` directory (**NOTE:** The total 65 reads alignments files take about 390GB storage space.):
 ```
 ./download.encode65.sh
 ```
-**NOTE:** The total 65 reads alignments files take about 390GB storage space.
 
 To evaluate to predicted transcripts, we use human annotation database as reference. 
 We align all samples in **ENCODE10** to GRCh38. For samples in **ENCODE65**, some of
