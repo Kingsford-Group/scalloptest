@@ -86,4 +86,4 @@ Once the results have been generated, one can use the following scripts in `bin`
 ```
 The `-c` parameter should match the one used to run the three methods. 
 The summarized accuracy, including `# correct transcritps` and `precision` for both multi-exon transcripts
-and single-exon transcritps, shall be output to standard output.
+and single-exon transcritps, shall be printed on standard output.
