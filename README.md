@@ -6,7 +6,8 @@ This repository tests and compares the performance of our released transcript as
 [TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/).
 The datasets, methods, and results are described in our paper
 (http://biorxiv.org/content/early/2017/04/03/123612).
-Here we provides scripts to download datasets, run the three methods, and report the results.
+Here we provides scripts to download datasets, run the three methods, evaluated the
+predicted transcripts, and report the results.
 
 # Datasets
 We compare the three methods on two datasets. The first dataset, namely **ENCODE10**,
