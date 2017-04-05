@@ -51,10 +51,10 @@ The experiments involves the following four programs:
 
 Program | Version | Description | URL
 ------------ | ------------ | ------------ | ------------
-Scallop | v0.9.8 | Transcript Assembler | (https://github.com/Kingsford-Group/scallop) 
-StringTie | v1.3.2d | Transcript Assembler | (https://ccb.jhu.edu/software/stringtie/) 
-TransComb | v.1.0 | Transcript Assembler | (https://sourceforge.net/projects/transcriptomeassembly/files/)
-gffcompare | v0.9.9c | Evaluate predicted transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
+Scallop | v0.9.8 | Transcript assembler | (https://github.com/Kingsford-Group/scallop) 
+StringTie | v1.3.2d | Transcript assembler | (https://ccb.jhu.edu/software/stringtie/) 
+TransComb | v.1.0 | Transcript assembler | (https://sourceforge.net/projects/transcriptomeassembly/files/)
+gffcompare | v0.9.9c | Evaluate assembled transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
 
 We include in `programs/linux_x86_64` and `programs/macOS` the binary executables of these four programs for linux and macOS platforms.
 If these binary versions cannot execute on your machine, you need to download and compile the source code.
