@@ -1,16 +1,12 @@
 #!/bin/bash
 
 coverage="default"
-platform="linux_x86_64"
 
-while getopts "c:p" arg
+while getopts "c:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
-		;;
-	p) 
-		platform=$OPTARG
 		;;
 	esac
 done
