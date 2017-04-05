@@ -62,7 +62,7 @@ After that, link them to `programs/linux_x86_64` or `programs/macOS`.
 
 # Run the Methods
 
-Once the datasets are programs are all available, use the following scripts
+Once the datasets are programs are all available, use the following scripts in `bin`
 to run the three assemblers on the corresponding datasets:
 ```
 ./run.encode10.sh [-c coverage] [-p platform]
@@ -79,7 +79,7 @@ All results shall appear under directory `results`.
 
 # Report Accuracy
 
-Once the results have been generated, one can use the following scripts to summarize the accuracy of the three assemblers:
+Once the results have been generated, one can use the following scripts in `bin` to summarize the accuracy of the three assemblers:
 ```
 ./collect.encode10.sh [-c coverage]
 ./collect.encode65.sh [-c coverage]
