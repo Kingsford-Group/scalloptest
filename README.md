@@ -17,7 +17,7 @@ For each of these 10 samples, we align it with three RNA-seq aligners,
 [TopHat2](https://ccb.jhu.edu/software/tophat/index.shtml),
 [STAR](https://github.com/alexdobin/STAR), and
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
-Use this [link](https://cmu.box.com/s/j4d1ysta09q786drxf4z4evt49sevibg) to download these reads alignment files.<br>
+Use this [link](https://cmu.box.com/s/j4d1ysta09q786drxf4z4evt49sevibg) to download these reads alignment files.
 **NOTE:** The total 30 reads alignments files (in `bam` format) take about 270GB storage space.
 
 The second dataset, namely **ENCODE65**,
