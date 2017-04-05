@@ -34,11 +34,11 @@ The downloaded files will appear under `data/encode65`.
 **NOTE:** The total 65 reads alignments files take about 390GB storage space.
 
 
-To evaluate to predicted transcripts, we use human annotation database as reference. 
+To evaluate the assembled transcripts by each method, we use human annotation database as reference. 
 We align all samples in **ENCODE10** to GRCh38. For samples in **ENCODE65**, some of
 them are aligned to GRCh38, and some of them are aligned to GRCh37
 (see `bin/encode15.list` and `bin/encode65.list` for details).
-Use the following script to download annotations for GRCh38 and GRCh37:
+Use the following script in `bin` to download annotations for GRCh38 and GRCh37:
 ```
 ./download.annotation.sh
 ```
@@ -47,7 +47,7 @@ The downloaded files will appear under `data/ensembl`.
 
 # Programs
 
-The experiments involves the following four programs:
+Our experiments involve the following four programs:
 
 Program | Version | Description | URL
 ------------ | ------------ | ------------ | ------------
@@ -57,13 +57,13 @@ TransComb | v.1.0 | Transcript assembler | (https://sourceforge.net/projects/tra
 gffcompare | v0.9.9c | Evaluate assembled transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
 
 We include in `programs/linux_x86_64` and `programs/macOS` the binary executables of these four programs for linux and macOS platforms.
-If these binary versions cannot execute on your machine, you need to download and compile the source code.
-After that, link them to `programs/linux_x86_64` or `programs/macOS`.
+If these binary versions cannot execute on your machine, you need to download and compile the corresponding source code.
+After compiling, link them to `programs/linux_x86_64` or `programs/macOS`.
 
 # Run the Methods
 
-Once the datasets are programs are all available, use the following scripts in `bin`
-to run the three assemblers on the corresponding datasets:
+Once the datasets and programs are all available, use the following scripts in `bin`
+to run the three assemblers on the datasets:
 ```
 ./run.encode10.sh [-c coverage] [-p platform]
 ./run.encode65.sh [-c coverage] [-p platform]
@@ -72,9 +72,9 @@ Both scripts take two parameters. `-c` specifies the *minimum coverage threshold
 which filters the predicted transcripts with coverage less than this value. 
 This parameter can be set as `default`, or any float value that is larger than 0 (cannot be exactly 0).
 `-p` parameter specifies the platform, chosen from `linux_x86_64`, or `macOS`.
-These two scripts shall choose the corresponding programs locating in either `programs/linux_x86_64` or `programs/macOS`.
+The programs in the corresponding directory shall be used.
 
-These two scripts shall also call `gffcompare` to evaluate the predicted transcripts. 
+These two scripts shall also invoke `gffcompare` to evaluate the assembled transcripts. 
 All results shall appear under directory `results`.
 
 # Report Accuracy
@@ -86,4 +86,4 @@ Once the results have been generated, one can use the following scripts in `bin`
 ```
 The `-c` parameter should match the one used to run the three methods. 
 The summarized accuracy, including `# correct transcritps` and `precision` for both multi-exon transcripts
-and single-exon transcritps, shall be pushed to standard output.
+and single-exon transcritps, shall be output to standard output.
