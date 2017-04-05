@@ -41,6 +41,8 @@ Use the following script to download annotations for GRCh38 and GRCh37:
 ./download.annotation.sh
 ```
 
+These three scripts shall automatically create directories under `data` for the downloaded datasets.
+
 # Programs
 
 The experiments involves the following four programs:
@@ -67,3 +69,10 @@ which filters the predicted transcripts with coverage less than this value.
 This parameter can be set as `default`, or any float value that is larger than 0 (cannot be exactly 0).
 `-p` parameter specifies the platform, chosen from `linux_x86_64`, or `macOS`.
 These two scripts shall choose the corresponding programs locating in either `programs/linux_x86_64` or `programs/macOS`.
+
+These two scripts shall also call `gffcompare` to evaluate the predicted transcripts. 
+All results shall appear under directory `results`.
+
+# Report Accuracy
+
+
