@@ -53,3 +53,17 @@ TransComb | v.1.0 | Transcript Assembler | (https://sourceforge.net/projects/tra
 gffcompare | v0.9.9c | Evaluate predicted transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
 
 We include in the release the binary executables of these four programs for linux and macOS platforms.
+
+# Run the Methods
+
+Once the datasets are programs are all available, use the following scripts
+to run the three assemblers on the corresponding datasets:
+```
+./run.encode10.sh [-c coverage] [-p platform]
+./run.encode65.sh [-c coverage] [-p platform]
+```
+Both scripts take two parameters. `-c` specifies the *minimum coverage threshold*,
+which filters the predicted transcripts with coverage less than this value. 
+This parameter can be set as `default`, or any float value that is larger than 0 (cannot be exactly 0).
+`-p` parameter specifies the platform, chosen from `linux_x86_64`, or `macOS`.
+These two scripts shall choose the corresponding programs locating in either `programs/linux_x86_64` or `programs/macOS`.
