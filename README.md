@@ -44,8 +44,9 @@ Use the following script to download annotations for GRCh38 and GRCh37:
 # Programs
 
 The experiments involves the following four programs:
+
 Program | Version | Description | URL
------------- | ------------- | ---------- | ----------------
+------------ | ------------ | ------------ | ------------
 Scallop | v0.9.8 | Transcript Assembler | (https://github.com/Kingsford-Group/scallop) 
 StringTie | v1.3.2d | Transcript Assembler | (https://ccb.jhu.edu/software/stringtie/) 
 TransComb | v.1.0 | Transcript Assembler | (https://sourceforge.net/projects/transcriptomeassembly/files/)
