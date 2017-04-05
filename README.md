@@ -75,4 +75,11 @@ All results shall appear under directory `results`.
 
 # Report Accuracy
 
-
+Once the results have been generated, one can use the following scripts to summarize the accuracy of the three assemblers:
+```
+./collect.encode10.sh [-c coverage]
+./collect.encode65.sh [-c coverage]
+```
+The `-c` parameter should match the one used to run the three methods. 
+The summarized accuracy, including `# correct transcritps` and `precision` for both multi-exon transcripts
+and single-exon transcritps, shall be pushed to standard output.
