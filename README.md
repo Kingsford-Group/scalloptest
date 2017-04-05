@@ -30,3 +30,13 @@ These samples have pre-computed reads alignments, and can be downloaded through
 ```
 ./download.encode65.sh
 ```
+**NOTE:** The total 65 reads alignments files take about 390GB storage space.
+
+To evaluate to predicted transcripts, we use human annotation database as reference. 
+We align all samples in **ENCODE10** to GRCh38. For samples in **ENCODE65**, some of
+them are aligned to GRCh38, and some of them are aligned to GRCh37
+(see `bin/encode15.list` and `bin/encode65.list` for details).
+Use the following script to download annotations for GRCh38 and GRCh37:
+```
+./download.annotation.sh
+```
