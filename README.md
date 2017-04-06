@@ -19,9 +19,17 @@ For each of these 10 samples, we align it with three RNA-seq aligners,
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
 We have uploaded all these reads alignments to CMU box.
 Use this link [(**DOWNLOAD ENCODE10**)](https://cmu.box.com/s/1h6z11ee7ks2ij5xvnc8n9z9gdjeet52) to download these files.
+Four reads alignment files are splitted and then uploaded due to single file size limit of CMU box:
+all the three alignments of SRR387661 and the tophat alignment of SRR534307.
+You need to merge them after downloading, for example:
+```
+cat tophat.sort.part1.bam tophat.sort.part2.bam > tophat.sort.bam
+```
+After that you can (optionally) remove `tophat.sort.part*.bam`.
 **NOTE:** The total 30 reads alignments files take about 270GB storage space.
 Please keep the identical directory structure and files names
 (i.e., `data/encode10/ACCESSION/ALIGNER.sort.bam`) as we used there.
+
 
 The second dataset, namely **ENCODE65**,
 contains 65 human RNA-seq samples downloaded from [ENCODE project (2013--present)](https://www.encodeproject.org/).
