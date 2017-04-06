@@ -56,24 +56,23 @@ Program | Version | Description
 [TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/) | v.1.0 | Transcript assembler
 [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) | v0.9.9c | Evaluate assembled transcripts
 
-We include in `programs/linux_x86_64` and `programs/macOS` the binary executables of these four programs for linux and macOS platforms.
-If these binary versions cannot execute on your machine, you need to download and compile the corresponding source code.
-After compiling, link them to `programs/linux_x86_64` or `programs/macOS`.
+You need to download (Scallop, StringTie and TransComb provide binary versions) or complile them.
+After that link these four programs to `programs` directory.
+Make sure that the program names are in lower cases (i.e., `scallop`, `stringtie`, `transcomb`, and `gffcompare`)
+in `programs` directory.
 
 # Run the Methods
 
 Once the datasets and programs are all available, use the following scripts in `bin`
 to run the three assemblers on the datasets:
 ```
-./run.encode10.sh [-c coverage] [-p platform]
-./run.encode65.sh [-c coverage] [-p platform]
+./run.encode10.sh [-c coverage]
+./run.encode65.sh [-c coverage]
 ```
-Both scripts take two parameters. `-c` specifies the *minimum coverage threshold*,
+Both scripts takes parameter `-c`, the *minimum coverage threshold*,
 which filters the predicted transcripts with coverage less than this value. 
 This parameter can be set as `default`, or any float value that is larger than 0 (cannot be exactly 0).
-`-p` parameter specifies the platform, chosen from `linux_x86_64`, or `macOS`.
-The programs in the corresponding directory shall be used.
-
+The default value of `-c` is `default`, which run the three methods with their default settings.
 These two scripts shall also invoke `gffcompare` to evaluate the assembled transcripts. 
 All results shall appear under directory `results`.
 
