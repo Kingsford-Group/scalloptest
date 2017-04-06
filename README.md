@@ -50,11 +50,11 @@ The downloaded files will appear under `data/ensembl`.
 Our experiments involve the following four programs:
 
 Program | Version | Description | URL
------------- | ------------ | ------------ | ------------
-Scallop | v0.9.8 | Transcript assembler | (https://github.com/Kingsford-Group/scallop) 
-StringTie | v1.3.2d | Transcript assembler | (https://ccb.jhu.edu/software/stringtie/) 
-TransComb | v.1.0 | Transcript assembler | (https://sourceforge.net/projects/transcriptomeassembly/files/)
-gffcompare | v0.9.9c | Evaluate assembled transcripts | (http://ccb.jhu.edu/software/stringtie/gff.shtml)
+------------ | ------------ | ------------ 
+[Scallop](https://github.com/Kingsford-Group/scallop) | v0.9.8 | Transcript assembler
+[StringTie](https://ccb.jhu.edu/software/stringtie/) | v1.3.2d | Transcript assembler
+[TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/) | v.1.0 | Transcript assembler
+[gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) | v0.9.9c | Evaluate assembled transcripts
 
 We include in `programs/linux_x86_64` and `programs/macOS` the binary executables of these four programs for linux and macOS platforms.
 If these binary versions cannot execute on your machine, you need to download and compile the corresponding source code.
