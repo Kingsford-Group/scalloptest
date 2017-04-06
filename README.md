@@ -49,7 +49,7 @@ The downloaded files will appear under `data/ensembl`.
 
 Our experiments involve the following four programs:
 
-Program | Version | Description | URL
+Program | Version | Description
 ------------ | ------------ | ------------ 
 [Scallop](https://github.com/Kingsford-Group/scallop) | v0.9.8 | Transcript assembler
 [StringTie](https://ccb.jhu.edu/software/stringtie/) | v1.3.2d | Transcript assembler
