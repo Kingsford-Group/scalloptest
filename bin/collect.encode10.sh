@@ -30,6 +30,14 @@ do
 		y2=`cat $results/$id.$aa/stringtie.$coverage/gffall.stats | grep Intron | grep chain | head -n 1 | awk '{print $6}'`
 		z1=`cat $results/$id.$aa/transcomb.$coverage/gffall.stats | grep Matching | grep intron | grep chain | head -n 1 | awk '{print $4}'`
 		z2=`cat $results/$id.$aa/transcomb.$coverage/gffall.stats | grep Intron | grep chain | head -n 1 | awk '{print $6}'`
+
+		if [ "$x1" == "" ]; then x1="0"; fi
+		if [ "$x2" == "" ]; then x2="0"; fi
+		if [ "$y1" == "" ]; then y1="0"; fi
+		if [ "$y2" == "" ]; then y2="0"; fi
+		if [ "$z1" == "" ]; then z1="0"; fi
+		if [ "$z2" == "" ]; then z2="0"; fi
+
 		echo "$id $aa $x1 $x2 $y1 $y2 $z1 $z2"
 	done
 done
@@ -52,6 +60,13 @@ do
 		z1=`cat $results/$id.$aa/transcomb.$coverage/gffall.transcomb.gtf.tmap | awk '$6 == 1' | awk '$3 == "="' | wc -l`
 		z2=`cat $results/$id.$aa/transcomb.$coverage/gffall.transcomb.gtf.tmap | awk '$6 == 1' | wc -l`
 
+		if [ "$x1" == "" ]; then x1="0"; fi
+		if [ "$x2" == "" ]; then x2="0"; fi
+		if [ "$y1" == "" ]; then y1="0"; fi
+		if [ "$y2" == "" ]; then y2="0"; fi
+		if [ "$z1" == "" ]; then z1="0"; fi
+		if [ "$z2" == "" ]; then z2="0"; fi
+	
 		echo "$id $aa $x1 $x2 $y1 $y2 $z1 $z2"
 	done
 done
