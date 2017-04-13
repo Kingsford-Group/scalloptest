@@ -14,6 +14,17 @@ done
 dir=`pwd`
 bin=$dir/../programs
 
+if [ ! -x $bin/transcomb ]; then
+	echo "please make sure $bin/transcomb is available/executable"
+	exit
+fi
+
+if [ ! -x $bin/gffcompare ]; then
+	echo "please make sure $bin/gffcompare is available/executable"
+	exit
+fi
+
+
 list=$dir/encode10.list
 datadir=$dir/../data/encode10
 results=$dir/../results/encode10
@@ -27,9 +38,20 @@ do
 	gm=`echo $x | cut -f 3 -d ":"`
 	gtf=$dir/../data/ensembl/$gm.gtf
 
+	if [ ! -s $gtf ]; then
+		echo "make sure $gtf is available"
+		exit
+	fi
+
 	for aa in `echo "tophat star hisat"`
 	do
 		bam=$datadir/$id/$aa.sort.bam
+
+		if [ ! -s $bam ]; then
+			echo "make sure $bam is available"
+			exit
+		fi
+
 		cur=$results/$id.$aa/transcomb.$coverage
 		mkdir -p $cur
 

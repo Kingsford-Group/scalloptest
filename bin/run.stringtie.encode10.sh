@@ -14,6 +14,17 @@ done
 dir=`pwd`
 bin=$dir/../programs
 
+if [ ! -x $bin/stringtie ]; then
+	echo "please make sure $bin/stringtie is available/executable"
+	exit
+fi
+
+if [ ! -x $bin/gffcompare ]; then
+	echo "please make sure $bin/gffcompare is available/executable"
+	exit
+fi
+
+
 list=$dir/encode10.list
 datadir=$dir/../data/encode10
 results=$dir/../results/encode10
@@ -27,6 +38,11 @@ do
 	gm=`echo $x | cut -f 3 -d ":"`
 	gtf=$dir/../data/ensembl/$gm.gtf
 
+	if [ ! -s $gtf ]; then
+		echo "make sure $gtf is available"
+		exit
+	fi
+
 	st="";
 	if [ "$ss" == "first" ]; then
 		st="--rf"
@@ -37,6 +53,12 @@ do
 	for aa in `echo "tophat star hisat"`
 	do
 		bam=$datadir/$id/$aa.sort.bam
+
+		if [ ! -s $bam ]; then
+			echo "make sure $bam is available"
+			exit
+		fi
+
 		cur=$results/$id.$aa/stringtie.$coverage
 		mkdir -p $cur
 

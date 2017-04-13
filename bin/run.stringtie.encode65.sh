@@ -14,6 +14,17 @@ done
 dir=`pwd`
 bin=$dir/../programs
 
+if [ ! -x $bin/stringtie ]; then
+	echo "please make sure $bin/stringtie is available/executable"
+	exit
+fi
+
+if [ ! -x $bin/gffcompare ]; then
+	echo "please make sure $bin/gffcompare is available/executable"
+	exit
+fi
+
+
 list=$dir/encode65.list
 datadir=$dir/../data/encode65
 results=$dir/../results/encode65
@@ -27,6 +38,17 @@ do
 	gm=`echo $x | cut -f 3 -d ":"`
 
 	gtf=$dir/../data/ensembl/$gm.gtf
+	bam=$datadir/$id.bam
+
+	if [ ! -s $gtf ]; then
+		echo "make sure $gtf is available"
+		exit
+	fi
+
+	if [ ! -s $bam ]; then
+		echo "make sure $bam is available"
+		exit
+	fi
 
 	st="";
 	if [ "$ss" == "first" ]; then
@@ -35,7 +57,6 @@ do
 		st="--fr"
 	fi
 
-	bam=$datadir/$id.bam
 	cur=$results/$id/stringtie.$coverage
 	mkdir -p $cur
 
