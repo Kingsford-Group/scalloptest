@@ -1,15 +1,25 @@
 #!/bin/bash
 
+suffix=""
 coverage="default"
 
-while getopts "c:" arg
+while getopts "c:x:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
 		;;
+	x) 
+		suffix=$OPTARG
+		;;
 	esac
 done
+
+if [ "$suffix" == "" ]; then
+	echo "please provide -x to specify suffix"
+	suffix=$coverage
+	exit
+fi
 
 dir=`pwd`
 bin=$dir/../programs
@@ -45,29 +55,14 @@ do
 	for aa in `echo "tophat star hisat"`
 	do
 		bam=$datadir/$id/$aa.sort.bam
+		cur=$results/$id.$aa/scallop.$suffix
 
 		if [ ! -s $bam ]; then
 			echo "make sure $bam is available"
 			exit
 		fi
 
-		cur=$results/$id.$aa/scallop.$coverage
-		mkdir -p $cur
+		nohup ./run.scallop.single.sh $cur $bam $gtf $coverage $ss &
 
-		cd $cur
-
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss > scallop.log; } 2> time.log
-		else
-			{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss --min_transcript_coverage $coverage > scallop.log; } 2> time.log
-		fi
-
-		cat scallop.gtf | sed 's/^chr//g' > scallop.tmp.xxx.gtf
-		mv scallop.tmp.xxx.gtf scallop.gtf
-
-		$bin/gffcompare -o gffmul -r $gtf scallop.gtf -M -N
-		$bin/gffcompare -o gffall -r $gtf scallop.gtf
-		cd -
 	done
 done
