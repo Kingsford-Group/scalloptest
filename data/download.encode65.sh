@@ -1,7 +1,7 @@
 #!/bin/bash
 
 list=./encode65.list
-data=../data/encode65/
+data=./encode65/
 
 mkdir -p $data
 
