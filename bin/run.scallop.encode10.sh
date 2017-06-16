@@ -21,6 +21,9 @@ if [ "$suffix" == "" ]; then
 	exit
 fi
 
+scripts=scripts.$suffix
+rm -rf $scripts
+
 dir=`pwd`
 bin=$dir/../programs
 
@@ -62,7 +65,8 @@ do
 			exit
 		fi
 
-		nohup ./run.scallop.single.sh $cur $bam $gtf $coverage $ss &
-
+		echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 	done
 done
+
+nohup cat $scripts | xargs -L 1 -P 20 -I CMD bash -c CMD > log &

@@ -1,9 +1,11 @@
 #!/bin/bash
 
+suffix=""
 coverage="default"
-sample="0.10"
+sample="0.05"
+scripts=""
 
-while getopts "c:s:" arg
+while getopts "c:s:x:t:" arg
 do
 	case $arg in 
 	c) 
@@ -12,8 +14,19 @@ do
 	s) 
 		sample=$OPTARG
 		;;
+	x) 
+		suffix=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
+		;;
 	esac
 done
+
+if [ "$suffix" == "" ]; then
+	echo "provide -x to specify suffix"
+	exit
+fi
 
 dir=`pwd`
 bin=$dir/../programs
@@ -28,7 +41,7 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list0
+list=$dir/sequin.list
 datadir=$dir/../data/sequin
 results=$dir/../results/sequin
 
@@ -46,7 +59,7 @@ do
 		exit
 	fi
 
-	for aa in `echo "star hisat"`
+	for aa in `echo "tophat star hisat"`
 	do
 		bb="$aa"."$gm"
 		bam=$datadir/$id/$bb/$aa.sort."$sample".bam
@@ -56,23 +69,12 @@ do
 			exit
 		fi
 
-		cur=$results/$id.$bb/scallop.$coverage.$sample
-		mkdir -p $cur
+		cur=$results/$id.$bb/scallop.$suffix.$sample
 
-		cd $cur
-
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss > scallop.log; } 2> time.log
+		if [ "$scripts" == "" ]; then
+			nohup ./run.scallop.single.sh $cur $bam $gtf $coverage $ss &
 		else
-			{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss --min_transcript_coverage $coverage > scallop.log; } 2> time.log
+			echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 		fi
-
-		cat scallop.gtf | sed 's/^chr//g' > scallop.tmp.xxx.gtf
-		mv scallop.tmp.xxx.gtf scallop.gtf
-
-		$bin/gffcompare -o gffmul -r $gtf scallop.gtf -M -N
-		$bin/gffcompare -o gffall -r $gtf scallop.gtf
-		cd -
 	done
 done

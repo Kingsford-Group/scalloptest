@@ -3,7 +3,7 @@
 coverage="default"
 sample="0.10"
 
-while getopts "c:s:" arg
+while getopts "c:s:t:" arg
 do
 	case $arg in 
 	c) 
@@ -11,6 +11,9 @@ do
 		;;
 	s) 
 		sample=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
 		;;
 	esac
 done
@@ -28,7 +31,7 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list0
+list=$dir/sequin.list
 datadir=$dir/../data/sequin
 results=$dir/../results/sequin
 
@@ -46,7 +49,7 @@ do
 		exit
 	fi
 
-	for aa in `echo "star hisat"`
+	for aa in `echo "tophat star"`
 	do
 		bb="$aa"."$gm"
 		bam=$datadir/$id/$bb/$aa.sort."$sample".bam
@@ -57,22 +60,12 @@ do
 		fi
 
 		cur=$results/$id.$bb/transcomb.$coverage.$sample
-		mkdir -p $cur
 
-		cd $cur
-
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/transcomb -b $bam -s $ss > transcomb.log; } 2> time.log
+		if [ "$scripts" == "" ]; then
+			nohup ./run.transcomb.single.sh $cur $bam $gtf $coverage $ss &
 		else
-			{ /usr/bin/time -v $bin/transcomb -b $bam -s $ss -f $coverage > transcomb.log; } 2> time.log
+			echo "./run.transcomb.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 		fi
 
-		cat TransComb.gtf | sed 's/^chr//g' > transcomb.tmp.xxx.gtf
-		mv transcomb.tmp.xxx.gtf transcomb.gtf
-
-		$bin/gffcompare -o gffmul -r $gtf transcomb.gtf -M -N
-		$bin/gffcompare -o gffall -r $gtf transcomb.gtf
-		cd -
 	done
 done

@@ -3,7 +3,7 @@
 coverage="default"
 sample="0.10"
 
-while getopts "c:s:" arg
+while getopts "c:s:t:" arg
 do
 	case $arg in 
 	c) 
@@ -11,6 +11,9 @@ do
 		;;
 	s) 
 		sample=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
 		;;
 	esac
 done
@@ -28,7 +31,7 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list0
+list=$dir/sequin.list
 datadir=$dir/../data/sequin
 results=$dir/../results/sequin
 
@@ -64,22 +67,11 @@ do
 		fi
 
 		cur=$results/$id.$bb/stringtie.$coverage.$sample
-		mkdir -p $cur
 
-		cd $cur
-
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/stringtie $bam -o stringtie.gtf $st > stringtie.log; } 2> time.log
+		if [ "$scripts" == "" ]; then
+			nohup ./run.stringtie.single.sh $cur $bam $gtf $coverage $st &
 		else
-			{ /usr/bin/time -v $bin/stringtie $bam -o stringtie.gtf $st -c $coverage > stringtie.log; } 2> time.log
+			echo "./run.stringtie.single.sh $cur $bam $gtf $coverage $st" >> $scripts
 		fi
-
-		cat stringtie.gtf | sed 's/^chr//g' > stringtie.tmp.xxx.gtf
-		mv stringtie.tmp.xxx.gtf stringtie.gtf
-
-		$bin/gffcompare -o gffmul -r $gtf stringtie.gtf -M -N
-		$bin/gffcompare -o gffall -r $gtf stringtie.gtf
-		cd -
 	done
 done
