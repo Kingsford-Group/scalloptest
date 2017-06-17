@@ -1,37 +1,72 @@
 #!/bin/bash
 
-#!/bin/bash
-
-suffix=""
-
-while getopts "x:" arg
-do
-	case $arg in 
-	x) 
-		suffix=$OPTARG
-		;;
-	esac
-done
-
-if [ "$suffix" == "" ]; then
-	echo "please provide -x for suffix"
-	exit
-fi
-
 dir=`pwd`
-scripts1=`tempfile -d $dir`
-scripts2=`tempfile -d $dir`
-rm -f $scripts1 $scripts2
+bin=$dir/../programs
+list=$dir/../data/encode10.list
+datadir=$dir/../data/encode10
+results=$dir/../results/encode10
+mkdir -p $results
 
-./run.scallop.encode10.sh -x $suffix.0.01 -c 0.01 -t $scripts1 
-./run.scallop.encode10.sh -x $suffix.5 -c 5 -t $scripts1 
-./run.scallop.encode10.sh -x $suffix.7.5 -c 7.5 -t $scripts1 
-./run.scallop.encode10.sh -x $suffix.10 -c 10 -t $scripts1 
-./run.scallop.encode10.sh -x $suffix.25 -c 25 -t $scripts1
-./run.scallop.encode10.sh -x $suffix.50 -c 50 -t $scripts1
-./run.scallop.encode10.sh -x $suffix.75 -c 75 -t $scripts1
-./run.scallop.encode10.sh -x $suffix.100 -c 100 -t $scripts1
+scripts=`tempfile -d $dir`
+rm -f $scripts
 
-cat $scripts1 | sort -R > $scripts2
+function make.scripts
+{
+	algo=$1;
+	suffix=$2;
+	coverage=$3;
 
-nohup cat $scripts2 | xargs -L 1 -I CMD -P 32 bash -c CMD > /tmp/null &
+	if [ ! -x $bin/$1 ]; then
+		echo "please make sure $bin/scallop is available/executable"
+		exit
+	fi
+	
+	if [ ! -x $bin/gffcompare ]; then
+		echo "please make sure $bin/gffcompare is available/executable"
+		exit
+	fi
+
+	aligns="tophat star hisat"
+
+	if [ "$algo" == "transcomb" ]; then
+		aligns="tophat star"
+	fi
+
+	for x in `cat $list`
+	do
+		id=`echo $x | cut -f 1 -d ":"`
+		ss=`echo $x | cut -f 2 -d ":"`
+		gm=`echo $x | cut -f 3 -d ":"`
+		gtf=$dir/../data/ensembl/$gm.gtf
+	
+		if [ ! -s $gtf ]; then
+			echo "make sure $gtf is available"
+			exit
+		fi
+	
+		for aa in `echo $aligns`
+		do
+			bam=$datadir/$id.$aa/$aa.sort.bam
+	
+			if [ ! -s $bam ]; then
+				echo "make sure $bam is available"
+				exit
+			fi
+	
+			cur=$results/$id.$aa/$algo.$suffix
+	
+			echo "./run.$algo.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
+		done
+	done
+}
+
+make.scripts scallop test1.10 10 
+make.scripts stringtie test2.10 10 
+make.scripts transcomb test3.10 10 
+
+xarglist=`tempfile -d $dir`
+rm -f $xarglist
+
+cat $scripts | sort -R > $xarglist
+
+#nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &

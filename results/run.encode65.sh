@@ -1,48 +1,63 @@
 #!/bin/bash
 
-coverage="default"
-
-while getopts "c:" arg
-do
-	case $arg in 
-	c) 
-		coverage=$OPTARG
-		;;
-	esac
-done
-
+dir=`pwd`
 bin=$dir/../programs
+list=$dir/../data/encode65.list
+datadir=$dir/../data/encode65
+results=$dir/../results/encode65
+mkdir -p $results
 
-if [ ! -x $bin/scallop ]; then
-	echo "please make sure $bin/scallop is available/executable"
-	exit
-fi
+scripts=`tempfile -d $dir`
+rm -f $scripts
 
-if [ ! -x $bin/stringtie ]; then
-	echo "please make sure $bin/stringtie is available/executable"
-	exit
-fi
+function make.scripts
+{
+	algo=$1;
+	suffix=$2;
+	coverage=$3;
 
-if [ ! -x $bin/transcomb ]; then
-	echo "please make sure $bin/transcomb is available/executable"
-	exit
-fi
+	if [ ! -x $bin/$1 ]; then
+		echo "please make sure $bin/scallop is available/executable"
+		exit
+	fi
+	
+	if [ ! -x $bin/gffcompare ]; then
+		echo "please make sure $bin/gffcompare is available/executable"
+		exit
+	fi
 
-if [ ! -x $bin/gffcompare ]; then
-	echo "please make sure $bin/gffcompare is available/executable"
-	exit
-fi
+	for x in `cat $list`
+	do
+		id=`echo $x | cut -f 1 -d ":"`
+		ss=`echo $x | cut -f 2 -d ":"`
+		gm=`echo $x | cut -f 3 -d ":"`
+		gtf=$dir/../data/ensembl/$gm.gtf
+	
+		if [ ! -s $gtf ]; then
+			echo "make sure $gtf is available"
+			exit
+		fi
+	
+		bam=$datadir/$id.bam
+	
+		if [ ! -s $bam ]; then
+			echo "make sure $bam is available"
+			exit
+		fi
+	
+		cur=$results/$id/$algo.$suffix
+	
+		echo "./run.$algo.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
+	done
+}
 
-if [ ! -s $gtf/GRCh38.gtf ]; then
-	echo "please make sure $gtf/GRCh38.gtf is available (you may run ./download.annotation.sh)"
-	exit
-fi
+make.scripts scallop test1.10 10 
+make.scripts stringtie test2.10 10 
+make.scripts transcomb test3.10 10 
 
-if [ ! -s $gtf/GRCh37.gtf ]; then
-	echo "please make sure $gtf/GRCh37.gtf is available (you may run ./download.annotation.sh)"
-	exit
-fi
+xarglist=`tempfile -d $dir`
+rm -f $xarglist
 
-nohup ./run.scallop.encode65.sh -c $coverage &
-nohup ./run.stringtie.encode65.sh -c $coverage &
-nohup ./run.transcomb.encode65.sh -c $coverage &
+cat $scripts | sort -R > $xarglist
+
+#nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &

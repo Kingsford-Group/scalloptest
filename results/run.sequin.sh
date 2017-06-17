@@ -1,31 +1,14 @@
 #!/bin/bash
 
-suffix=""
-
-while getopts "x:" arg
-do
-	case $arg in 
-	x) 
-		suffix=$OPTARG
-		;;
-	esac
-done
-
-if [ "$suffix" == "" ]; then
-	echo "please provide -x for suffix (used for scallop)"
-	exit
-fi
-
 dir=`pwd`
-scripts=`tempfile -d $dir`
-rm -f $scripts
-
 bin=$dir/../programs
 list=$dir/../data/sequin.list
 datadir=$dir/../data/sequin
 results=$dir/../results/sequin
-
 mkdir -p $results
+
+scripts=`tempfile -d $dir`
+rm -f $scripts
 
 function make.scripts
 {
@@ -78,23 +61,9 @@ function make.scripts
 	done
 }
 
-./run.scallop.sequin.sh -x $suffix.10 -c 10 -t $scripts 
-./run.scallop.sequin.sh -x $suffix.25 -c 25 -t $scripts
-./run.scallop.sequin.sh -x $suffix.50 -c 50 -t $scripts
-./run.scallop.sequin.sh -x $suffix.75 -c 75 -t $scripts
-./run.scallop.sequin.sh -x $suffix.100 -c 100 -t $scripts
-
-#./run.stringtie.sequin.sh -c 10 -t $scripts
-#./run.stringtie.sequin.sh -c 25 -t $scripts
-#./run.stringtie.sequin.sh -c 50 -t $scripts
-#./run.stringtie.sequin.sh -c 75 -t $scripts
-#./run.stringtie.sequin.sh -c 100 -t $scripts
-
-#./run.transcomb.sequin.sh -c 10 -t $scripts
-#./run.transcomb.sequin.sh -c 25 -t $scripts
-#./run.transcomb.sequin.sh -c 50 -t $scripts
-#./run.transcomb.sequin.sh -c 75 -t $scripts
-#./run.transcomb.sequin.sh -c 100 -t $scripts
+make.scripts scallop test1.10 10 
+make.scripts stringtie test2.10 10 
+make.scripts transcomb test3.10 10 
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
