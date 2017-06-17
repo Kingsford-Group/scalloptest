@@ -1,12 +1,16 @@
 #!/bin/bash
 
 coverage="default"
+scripts=""
 
-while getopts "c:" arg
+while getopts "c:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
 		;;
 	esac
 done
@@ -24,9 +28,8 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-
-list=$dir/encode10.list
 datadir=$dir/../data/encode10
+list=$dir/../data/encode10.list
 results=$dir/../results/encode10
 
 mkdir -p $results
@@ -43,7 +46,7 @@ do
 		exit
 	fi
 
-	for aa in `echo "tophat star hisat"`
+	for aa in `echo "tophat star"`
 	do
 		bam=$datadir/$id/$aa.sort.bam
 
@@ -53,23 +56,8 @@ do
 		fi
 
 		cur=$results/$id.$aa/transcomb.$coverage
-		mkdir -p $cur
 
-		cd $cur
+		echo "./run.transcomb.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/transcomb -b $bam -s $ss > transcomb.log; } 2> time.log
-		else
-			{ /usr/bin/time -v $bin/transcomb -b $bam -s $ss -f $coverage > transcomb.log; } 2> time.log
-		fi
-
-		cat TransComb.gtf | sed 's/^chr//g' > transcomb.tmp.xxx.gtf
-		mv transcomb.tmp.xxx.gtf transcomb.gtf
-
-		$bin/gffcompare -o gffmul -r $gtf transcomb.gtf -M -N
-		$bin/gffcompare -o gffall -r $gtf transcomb.gtf
-
-		cd -
 	done
 done

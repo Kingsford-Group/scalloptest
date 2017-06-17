@@ -18,6 +18,10 @@ mkdir -p $cur
 
 cd $cur
 
+if [ -s scallop.gtf ]; then
+	exit
+fi
+
 if [ "$coverage" == "default" ]
 then
 	{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $strand > scallop.log; } 2> time.log

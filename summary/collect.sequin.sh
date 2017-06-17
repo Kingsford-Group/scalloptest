@@ -1,6 +1,6 @@
 #!/bin/bash
 
-list=../lists/sequin.list
+list=../data/sequin.list
 summary=./sequin/accuracy
 
 mkdir -p $summary

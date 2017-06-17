@@ -12,71 +12,93 @@ do
 done
 
 if [ "$suffix" == "" ]; then
-	echo "please provide -x for suffix"
+	echo "please provide -x for suffix (used for scallop)"
 	exit
 fi
 
-scripts=./scripts.sequin6
+dir=`pwd`
+scripts=`tempfile -d $dir`
 rm -f $scripts
 
-#./run.scallop.sequin.sh -x $suffix.7.0 -c 7.0 -s 1.00 -t $scripts
-#nohup cat $scripts | xargs -L 1 -I CMD -P 1 bash -c CMD > log & 
-#exit
+bin=$dir/../programs
+list=$dir/../data/sequin.list
+datadir=$dir/../data/sequin
+results=$dir/../results/sequin
 
-./run.scallop.sequin.sh -x $suffix.1.0 -c 1.0 -s 1.00 -t $scripts 
-./run.scallop.sequin.sh -x $suffix.2.0 -c 2.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.3.0 -c 3.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.4.0 -c 4.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.5.0 -c 5.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.6.0 -c 6.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.7.0 -c 7.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.8.0 -c 8.0 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.9.0 -c 9.0 -s 1.00 -t $scripts
+mkdir -p $results
 
-./run.scallop.sequin.sh -x $suffix.1.5 -c 1.5 -s 1.00 -t $scripts 
-./run.scallop.sequin.sh -x $suffix.2.5 -c 2.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.3.5 -c 3.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.4.5 -c 4.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.5.5 -c 5.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.6.5 -c 6.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.7.5 -c 7.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.8.5 -c 8.5 -s 1.00 -t $scripts
-./run.scallop.sequin.sh -x $suffix.9.5 -c 9.5 -s 1.00 -t $scripts
+function make.scripts
+{
+	algo=$1;
+	suffix=$2;
+	coverage=$3;
 
-nohup cat $scripts | xargs -L 1 -I CMD -P 20 bash -c CMD > log & 
-exit
+	if [ ! -x $bin/$1 ]; then
+		echo "please make sure $bin/scallop is available/executable"
+		exit
+	fi
+	
+	if [ ! -x $bin/gffcompare ]; then
+		echo "please make sure $bin/gffcompare is available/executable"
+		exit
+	fi
 
-./run.stringtie.sequin.sh -c 1.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 2.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 3.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 4.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 5.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 6.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 7.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 8.5 -s 1.00 -t $scripts
-./run.stringtie.sequin.sh -c 9.5 -s 1.00 -t $scripts
+	aligns="tophat star hisat"
 
-nohup cat $scripts | xargs -L 1 -I CMD -P 10 bash -c CMD > log & 
-exit
+	if [ "$1" == "transcomb" ]; then
+		aligns="tophat star"
+	fi
 
-./run.transcomb.sequin.sh -c 1.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 2.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 3.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 4.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 5.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 6.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 7.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 8.0 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 9.0 -s 1.00 -t $scripts
+	for x in `cat $list`
+	do
+		id=`echo $x | cut -f 1 -d ":"`
+		ss=`echo $x | cut -f 2 -d ":"`
+		gm=`echo $x | cut -f 3 -d ":"`
+		gtf=$dir/../data/ensembl/$gm.gtf
+	
+		if [ ! -s $gtf ]; then
+			echo "make sure $gtf is available"
+			exit
+		fi
+	
+		for aa in `echo $aligns`
+		do
+			bb="$aa"."$gm"
+			bam=$datadir/$id/$bb/$aa.sort.bam
+	
+			if [ ! -s $bam ]; then
+				echo "make sure $bam is available"
+				exit
+			fi
+	
+			cur=$results/$id.$bb/$algo.$suffix
+	
+			echo "./run.$algo.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
+		done
+	done
+}
 
-./run.transcomb.sequin.sh -c 1.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 2.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 3.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 4.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 5.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 6.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 7.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 8.5 -s 1.00 -t $scripts
-./run.transcomb.sequin.sh -c 9.5 -s 1.00 -t $scripts
+./run.scallop.sequin.sh -x $suffix.10 -c 10 -t $scripts 
+./run.scallop.sequin.sh -x $suffix.25 -c 25 -t $scripts
+./run.scallop.sequin.sh -x $suffix.50 -c 50 -t $scripts
+./run.scallop.sequin.sh -x $suffix.75 -c 75 -t $scripts
+./run.scallop.sequin.sh -x $suffix.100 -c 100 -t $scripts
 
-nohup cat $scripts | xargs -L 1 -I CMD -P 5 bash -c CMD > log &
+#./run.stringtie.sequin.sh -c 10 -t $scripts
+#./run.stringtie.sequin.sh -c 25 -t $scripts
+#./run.stringtie.sequin.sh -c 50 -t $scripts
+#./run.stringtie.sequin.sh -c 75 -t $scripts
+#./run.stringtie.sequin.sh -c 100 -t $scripts
+
+#./run.transcomb.sequin.sh -c 10 -t $scripts
+#./run.transcomb.sequin.sh -c 25 -t $scripts
+#./run.transcomb.sequin.sh -c 50 -t $scripts
+#./run.transcomb.sequin.sh -c 75 -t $scripts
+#./run.transcomb.sequin.sh -c 100 -t $scripts
+
+xarglist=`tempfile -d $dir`
+rm -f $xarglist
+
+cat $scripts | sort -R > $xarglist
+
+#nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &

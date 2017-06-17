@@ -12,7 +12,13 @@ cur=$1
 bam=$2
 gtf=$3
 coverage=$4
-strand=$5
+strand=""
+
+if [ "$5" == "first" ]; then
+	strand="--rf"
+elif [ "$5" == "second" ]; then
+	strand="--fr"
+fi
 
 mkdir -p $cur
 

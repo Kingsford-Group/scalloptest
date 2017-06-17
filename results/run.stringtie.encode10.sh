@@ -1,12 +1,16 @@
 #!/bin/bash
 
 coverage="default"
+scripts=""
 
-while getopts "c:" arg
+while getopts "c:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
 		;;
 	esac
 done
@@ -24,8 +28,7 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-
-list=$dir/encode10.list
+list=$dir/../data/encode10.list
 datadir=$dir/../data/encode10
 results=$dir/../results/encode10
 
@@ -64,18 +67,6 @@ do
 
 		cd $cur
 
-		if [ "$coverage" == "default" ]
-		then
-			{ /usr/bin/time -v $bin/stringtie $bam -o stringtie.gtf $st > stringtie.log; } 2> time.log
-		else
-			{ /usr/bin/time -v $bin/stringtie $bam -o stringtie.gtf $st -c $coverage > stringtie.log; } 2> time.log
-		fi
-
-		cat stringtie.gtf | sed 's/^chr//g' > stringtie.tmp.xxx.gtf
-		mv stringtie.tmp.xxx.gtf stringtie.gtf
-
-		$bin/gffcompare -o gffall -r $gtf stringtie.gtf
-		$bin/gffcompare -o gffmul -r $gtf stringtie.gtf -M -N
-		cd -
+		echo "./run.stringtie.single.sh $cur $bam $gtf $coverage $st" >> $scripts
 	done
 done

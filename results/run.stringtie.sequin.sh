@@ -1,16 +1,13 @@
 #!/bin/bash
 
 coverage="default"
-sample="0.10"
+scripts=""
 
-while getopts "c:s:t:" arg
+while getopts "c:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
-		;;
-	s) 
-		sample=$OPTARG
 		;;
 	t) 
 		scripts=$OPTARG
@@ -31,8 +28,8 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list
 datadir=$dir/../data/sequin
+list=$dir/../data/sequin.list
 results=$dir/../results/sequin
 
 mkdir -p $results
@@ -56,22 +53,18 @@ do
 		st="--fr"
 	fi
 
-	for aa in `echo "star hisat"`
+	for aa in `echo "tophat"`
 	do
 		bb="$aa"."$gm"
-		bam=$datadir/$id/$bb/$aa.sort."$sample".bam
+		bam=$datadir/$id/$bb/$aa.sort.bam
 
 		if [ ! -s $bam ]; then
 			echo "make sure $bam is available"
 			exit
 		fi
 
-		cur=$results/$id.$bb/stringtie.$coverage.$sample
+		cur=$results/$id.$bb/stringtie.$coverage
 
-		if [ "$scripts" == "" ]; then
-			nohup ./run.stringtie.single.sh $cur $bam $gtf $coverage $st &
-		else
-			echo "./run.stringtie.single.sh $cur $bam $gtf $coverage $st" >> $scripts
-		fi
+		echo "./run.stringtie.single.sh $cur $bam $gtf $coverage $st" >> $scripts
 	done
 done

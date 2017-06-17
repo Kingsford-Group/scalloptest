@@ -11,7 +11,7 @@ do
 	esac
 done
 
-list=./sequin.list
+list=../data/sequin.list
 results=../results/sequin
 gm="is"
 

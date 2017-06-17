@@ -1,15 +1,28 @@
 #!/bin/bash
 
+suffix=""
 coverage="default"
+scripts=""
 
-while getopts "c:" arg
+while getopts "c:x:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
 		;;
+	x) 
+		suffix=$OPTARG
+		;;
+	t) 
+		scripts=$OPTARG
+		;;
 	esac
 done
+
+if [ "$suffix" == "" ]; then
+	echo "please provide -x to specify suffix"
+	exit
+fi
 
 dir=`pwd`
 bin=$dir/../programs
@@ -48,22 +61,7 @@ do
 		exit
 	fi
 
-	cur=$results/$id/scallop.$coverage
-	mkdir -p $cur
+	cur=$results/$id/scallop.$suffix
 
-	cd $cur
-
-	if [ "$coverage" == "default" ]
-	then
-		{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss > scallop.log; } 2> time.log
-	else
-		{ /usr/bin/time -v $bin/scallop -i $bam -o scallop.gtf --library_type $ss --min_transcript_coverage $coverage > scallop.log; } 2> time.log
-	fi
-
-	cat scallop.gtf | sed 's/^chr//g' > scallop.tmp.xxx.gtf
-	mv scallop.tmp.xxx.gtf scallop.gtf
-
-	$bin/gffcompare -o gffmul -r $gtf scallop.gtf -M -N
-	$bin/gffcompare -o gffall -r $gtf scallop.gtf
-	cd -
+	echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 done

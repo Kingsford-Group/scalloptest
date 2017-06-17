@@ -2,8 +2,9 @@
 
 suffix=""
 coverage="default"
+scripts=""
 
-while getopts "c:x:" arg
+while getopts "c:x:t:" arg
 do
 	case $arg in 
 	c) 
@@ -12,17 +13,16 @@ do
 	x) 
 		suffix=$OPTARG
 		;;
+	t) 
+		scripts=$OPTARG
+		;;
 	esac
 done
 
 if [ "$suffix" == "" ]; then
 	echo "please provide -x to specify suffix"
-	suffix=$coverage
 	exit
 fi
-
-scripts=scripts.$suffix
-rm -rf $scripts
 
 dir=`pwd`
 bin=$dir/../programs
@@ -37,8 +37,8 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/encode10.list
 datadir=$dir/../data/encode10
+list=$dir/../data/encode10.list
 results=$dir/../results/encode10
 
 mkdir -p $results
@@ -68,5 +68,3 @@ do
 		echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 	done
 done
-
-nohup cat $scripts | xargs -L 1 -P 20 -I CMD bash -c CMD > log &

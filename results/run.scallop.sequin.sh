@@ -2,17 +2,13 @@
 
 suffix=""
 coverage="default"
-sample="0.05"
 scripts=""
 
-while getopts "c:s:x:t:" arg
+while getopts "c:x:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
-		;;
-	s) 
-		sample=$OPTARG
 		;;
 	x) 
 		suffix=$OPTARG
@@ -41,8 +37,8 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list
 datadir=$dir/../data/sequin
+list=$dir/../data/sequin.list
 results=$dir/../results/sequin
 
 mkdir -p $results
@@ -62,19 +58,15 @@ do
 	for aa in `echo "tophat star hisat"`
 	do
 		bb="$aa"."$gm"
-		bam=$datadir/$id/$bb/$aa.sort."$sample".bam
+		bam=$datadir/$id/$bb/$aa.sort.bam
 
 		if [ ! -s $bam ]; then
 			echo "make sure $bam is available"
 			exit
 		fi
 
-		cur=$results/$id.$bb/scallop.$suffix.$sample
+		cur=$results/$id.$bb/scallop.$suffix
 
-		if [ "$scripts" == "" ]; then
-			nohup ./run.scallop.single.sh $cur $bam $gtf $coverage $ss &
-		else
-			echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
-		fi
+		echo "./run.scallop.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 	done
 done

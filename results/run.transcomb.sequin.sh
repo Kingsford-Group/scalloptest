@@ -1,16 +1,12 @@
 #!/bin/bash
 
 coverage="default"
-sample="0.10"
 
-while getopts "c:s:t:" arg
+while getopts "c:t:" arg
 do
 	case $arg in 
 	c) 
 		coverage=$OPTARG
-		;;
-	s) 
-		sample=$OPTARG
 		;;
 	t) 
 		scripts=$OPTARG
@@ -31,7 +27,7 @@ if [ ! -x $bin/gffcompare ]; then
 	exit
 fi
 
-list=$dir/sequin.list
+list=$dir/../data/sequin.list
 datadir=$dir/../data/sequin
 results=$dir/../results/sequin
 
@@ -52,20 +48,16 @@ do
 	for aa in `echo "tophat star"`
 	do
 		bb="$aa"."$gm"
-		bam=$datadir/$id/$bb/$aa.sort."$sample".bam
+		bam=$datadir/$id/$bb/$aa.sort.bam
 
 		if [ ! -s $bam ]; then
 			echo "make sure $bam is available"
 			exit
 		fi
 
-		cur=$results/$id.$bb/transcomb.$coverage.$sample
+		cur=$results/$id.$bb/transcomb.$coverage
 
-		if [ "$scripts" == "" ]; then
-			nohup ./run.transcomb.single.sh $cur $bam $gtf $coverage $ss &
-		else
-			echo "./run.transcomb.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
-		fi
+		echo "./run.transcomb.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
 
 	done
 done
