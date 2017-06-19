@@ -56,18 +56,19 @@ function make.scripts
 	
 			cur=$results/$id.$bb/$algo.$suffix
 	
-			echo "./run.$algo.single.sh $cur $bam $gtf $coverage $ss" >> $scripts
+			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss" >> $scripts
 		done
 	done
 }
 
-make.scripts scallop test1.10 10 
-make.scripts stringtie test2.10 10 
-make.scripts transcomb test3.10 10 
+make.scripts scallop B759.2.5 2.5
+make.scripts scallop B759.7.5 7.5
+#make.scripts stringtie 0.01 0.01
+#make.scripts transcomb 0.01 0.01
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
-#nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 10 bash -c CMD > /tmp/null &
