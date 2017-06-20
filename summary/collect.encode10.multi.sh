@@ -1,21 +1,16 @@
 #!/bin/bash
 
-id=""
+if [ "$#" != "4" ]; then
+	echo "ID algo1 algo2 algo3"
+	exit
+fi
 
-while getopts "i:" arg
-do
-	case $arg in 
-	i) 
-		id=$OPTARG
-		;;
-	esac
-done
+results=../results/encode10
 
-results=../results/sequin
-
-algo1="scallop.B759.1.0"
-algo2="stringtie.2.5"
-algo3="transcomb.0.01"
+id=$1
+algo1=$2
+algo2=$3
+algo3=$4
 
 if [ "$id" == "" ];
 then

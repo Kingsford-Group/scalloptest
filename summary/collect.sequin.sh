@@ -12,8 +12,6 @@ do
 	./collect.sequin.roc.sh -i $id > $summary/$id
 done
 
-exit
-
 # collect multi-exon results with default parameters
 summary=./sequin/accuracy.B759
 mkdir -p $summary
