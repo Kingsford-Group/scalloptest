@@ -1,12 +1,12 @@
 #!/bin/bash
 
 dir=`pwd`
-list=$dir/../data/sequin.list
+list=$dir/../data/encode10.list
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir/../summary/sequin/roc.B759.6
+sumdir=$dir/../summary/encode10/roc.B759.10
 
 echo "library(\"tikzDevice\")" > $tmpfile
 echo "source(\"$dir/R/roc.R\")" >> $tmpfile
@@ -15,10 +15,10 @@ for k in `cat $list`
 do
 	id=`echo $k | cut -f 1 -d ":"`
 	ss=`echo $k | cut -f 4 -d ":"`
-	echo "plot.roc(\"$sumdir/$id\", \"$ss\", \"$id.tex\", 1, 0.6, 0.2)" >> $tmpfile
+	echo "plot.roc(\"$sumdir/$id\", \"$ss\", \"$id.tex\", 1, 0.6, 0.9)" >> $tmpfile
 done
 
-outdir=$dir/sequin/roc
+outdir=$dir/encode10/roc
 mkdir -p $outdir
 
 cd $outdir
