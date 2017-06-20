@@ -54,7 +54,7 @@ function make.scripts
 				exit
 			fi
 	
-			cur=$results/$id.$bb/$algo.$suffix
+			cur=$results/$id.$aa/$algo.$suffix
 	
 			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss" >> $scripts
 		done

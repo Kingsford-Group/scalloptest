@@ -60,11 +60,20 @@ function make.scripts
 	done
 }
 
-make.scripts scallop B760 default
+make.scripts scallop B759.25 25
+#make.scripts scallop B759.0.01 0.01
+#make.scripts scallop B759.1 1
+#make.scripts scallop B759.2.5 2.5
+#make.scripts scallop B759.5 5
+#make.scripts scallop B759.7.5 7.5
+#make.scripts scallop B759.10 10
+#make.scripts scallop B759.50 50
+#make.scripts scallop B759.75 75
+#make.scripts scallop B759.100 100
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
-nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 40 bash -c CMD > /tmp/null &
