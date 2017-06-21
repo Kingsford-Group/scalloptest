@@ -8,7 +8,7 @@ rm -rf $tmpfile
 sumdir=$dir/encode10/collect.B759
 
 echo "library(\"tikzDevice\")" > $tmpfile
-echo "source(\"$dir/R/time.R\")" >> $tmpfile
+echo "source(\"$dir/R/encode10.time.R\")" >> $tmpfile
 
 echo "plot.time(\"$sumdir/time\", \"time.tex\")" >> $tmpfile
 
