@@ -2,8 +2,37 @@
 
 list=../data/encode10.list
 
+# collect quant-results with zero parameters
+summary=./encode10/collect.B759
+mkdir -p $summary
+
+for ll in `echo "1 2 3"`
+do
+	outfile=$summary/train.quant$ll.zero
+	rm -rf $outfile
+	for x in `cat $list | head -n 5`
+	do
+		id=`echo $x | cut -f 1 -d ":"`
+		./collect.encode10.quant.sh $id scallop.B759.0.01 stringtie.0.01 transcomb.0.01 $ll >> $outfile
+	done
+done
+
+for ll in `echo "1 2 3"`
+do
+	outfile=$summary/test.quant$ll.zero
+	rm -rf $outfile
+	for x in `cat $list | tail -n 5`
+	do
+		id=`echo $x | cut -f 1 -d ":"`
+		./collect.encode10.quant.sh $id scallop.B759.0.01 stringtie.0.01 transcomb.0.01 $ll >> $outfile
+	done
+done
+
+exit
+
+
 # collect class results with zero
-summary=./encode10/accuracy.B759
+summary=./encode10/class.B759
 mkdir -p $summary
 
 rm -rf $summary/train.class.zero
@@ -21,8 +50,8 @@ do
 	./collect.encode10.class.sh $id scallop.B759.0.01 stringtie.0.01 transcomb.0.01 >> $summary/test.class.zero
 done
 
-cat $summary/train.class.zero | sort -k1,1n > xxx; mv xxx $summary/train.class.zero
-cat $summary/test.class.zero | sort -k1,1n > xxx; mv xxx $summary/test.class.zero
+cat $summary/train.class.zero | sort -k1,1n -k2,2 > xxx; mv xxx $summary/train.class.zero
+cat $summary/test.class.zero | sort -k1,1n -k2,2 > xxx; mv xxx $summary/test.class.zero
 
 exit
 
