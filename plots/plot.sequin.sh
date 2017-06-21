@@ -1,4 +1,6 @@
 #!/bin/bash
 
-./plot.sequin.accuracy.sh
-./plot.sequin.roc.sh
+cdir=`pwd`/sequin/collect.B759
+
+./plot.sequin.accuracy.sh $cdir
+./plot.sequin.roc.sh $cdir

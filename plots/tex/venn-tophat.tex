@@ -1,0 +1,83 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usetikzlibrary{calc}
+\usetikzlibrary{petri}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{fit}
+
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+
+% legend
+\begin{scope}[xshift=2.8cm, yshift = 3.3cm]
+\draw[red, line width = 0.3cm, opacity = 0.5] (1cm, 0cm) -- (2cm, 0cm);
+\node at (2.8cm, 0cm) {StringTie};
+\draw[green, line width = 0.3cm, opacity = 0.5] (4cm, 0cm) -- (5cm, 0cm);
+\node at (5.95cm, 0cm) {TransComb};
+\draw[blue, line width = 0.3cm, opacity = 0.5] (7.3cm, 0cm) -- (8.3cm, 0cm);
+\node at (8.95cm, 0cm) {Scallop};
+%\draw (0.9cm, -0.3cm) rectangle (9.6cm, 0.3cm);
+\end{scope}
+
+% stringtie
+\begin{scope}[local bounding box = bbox]
+% first layer
+\begin{scope}
+\begin{scope}
+\input{venn-tophat-1}
+\node at(1.3cm, -0.1cm) {ST1~(18202)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-tophat-2}
+\node at(1.3cm, -0.1cm) {ST2~(16494)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-tophat-3}
+\node at(1.3cm, -0.1cm) {ST3~(19765)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-tophat-4}
+\node at(1.3cm, -0.1cm) {TC1~(20082)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-tophat-5}
+\node at(1.3cm, -0.1cm) {TC2~(18745)};
+\end{scope}
+\end{scope}
+
+% second layer
+\begin{scope}[yshift = -3.0cm]
+\begin{scope}
+\input{venn-tophat-6}
+\node at(1.3cm, -0.1cm) {SC1~(17838)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-tophat-7}
+\node at(1.3cm, -0.1cm) {SC2~(14732)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-tophat-8}
+\node at(1.3cm, -0.1cm) {SC3~(17231)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-tophat-9}
+\node at(1.3cm, -0.1cm) {SC4~(16151)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-tophat-10}
+\node at(1.3cm, -0.1cm) {SC5~(24982)};
+\end{scope}
+\end{scope}
+\end{scope}
+\draw[rounded corners] ($(bbox.south west) - (0.10cm, 0.40cm)$) rectangle ($(bbox.north east) + (0.1cm, 0.1cm)$);
+\node at ($(bbox.south) - (0.00cm, 0.3cm)$) [label=below:{(TopHat2)}]{};
+
+\end{tikzpicture}
+\end{document}

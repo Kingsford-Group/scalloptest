@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
+
 dir=`pwd`
 
 for ppp in `echo "train test"`
@@ -9,7 +15,7 @@ do
 		kkk=`echo $k | cut -f 1 -d ":"`
 		lab=`echo $k | cut -f 2 -d ":"`
 
-		accfile=$dir/encode10/collect.B759/$ppp.quant$kkk.zero
+		accfile=$1/$ppp.quant$kkk.zero
 		tmpfile=$dir/tmpfile.R
 		rm -rf $tmpfile
 		

@@ -4,16 +4,18 @@ list=../data/encode10.list
 summary=./encode10/collect.B759
 mkdir -p $summary
 
-
-# collect results for time
-rm -rf $summary/time
+# collect venn
+rm -rf $summary/venn.aligner
+rm -rf $summary/venn.algo
 for x in `cat $list`
 do
 	id=`echo $x | cut -f 1 -d ":"`
-	./collect.encode10.time.sh $id scallop.B759 stringtie transcomb >> $summary/time
+	cat ../results/encode10/$id.venn/aligner.summary >> $summary/venn.aligner
+	cat ../results/encode10/$id.venn/algo.summary >> $summary/venn.algo
 done
 
 exit
+
 
 # collect class results with zero parameters
 rm -rf $summary/train.class.zero
@@ -104,3 +106,17 @@ do
 	id=`echo $x | cut -f 1 -d ":"`
 	./collect.encode10.roc.sh $id scallop.B759 stringtie transcomb > $summary/$id
 done
+
+exit
+
+# collect results for time
+rm -rf $summary/time
+for x in `cat $list`
+do
+	id=`echo $x | cut -f 1 -d ":"`
+	./collect.encode10.time.sh $id scallop.B759 stringtie transcomb >> $summary/time
+done
+
+exit
+
+

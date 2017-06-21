@@ -1,12 +1,17 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
 dir=`pwd`
 list=$dir/../data/sequin.list
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir//sequin/collect.B759
+sumdir=$1
 
 echo "library(\"tikzDevice\")" > $tmpfile
 echo "source(\"$dir/R/roc.R\")" >> $tmpfile

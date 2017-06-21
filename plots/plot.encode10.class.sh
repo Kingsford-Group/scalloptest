@@ -1,11 +1,16 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
 dir=`pwd`
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir//encode10/collect.B759
+sumdir=$1
 outdir=$dir/encode10/class
 mkdir -p $outdir
 

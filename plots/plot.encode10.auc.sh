@@ -1,12 +1,17 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
 dir=`pwd`
 list=$dir/../data/encode10.list
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir//encode10/collect.B759
+sumdir=$1
 outdir=$dir/encode10/auc
 mkdir -p $outdir
 

@@ -1,12 +1,18 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
+
 dir=`pwd`
 list=$dir/../data/encode10.list
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir/encode10/colllect.B759
+sumdir=$1
 
 echo "library(\"tikzDevice\")" > $tmpfile
 echo "source(\"$dir/R/roc.R\")" >> $tmpfile

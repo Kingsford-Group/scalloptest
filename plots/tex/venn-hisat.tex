@@ -1,0 +1,73 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usetikzlibrary{calc}
+\usetikzlibrary{petri}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{fit}
+
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+
+
+% transcomb
+\begin{scope}[local bounding box = bbox]
+% first layer
+\begin{scope}
+\begin{scope}
+\input{venn-hisat-1}
+\node at(1.2cm, -0.0cm) {ST1~(15307)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-hisat-2}
+\node at(1.2cm, -0.0cm) {ST2~(16276)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-hisat-3}
+\node at(1.2cm, -0.0cm) {ST3~(16133)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-hisat-4}
+\node at(1.2cm, -0.0cm) {TC1~(18017)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-hisat-5}
+\node at(1.2cm, -0.0cm) {TC2~(17154)};
+\end{scope}
+\end{scope}
+
+% second layer
+\begin{scope}[yshift = -2.4cm]
+\begin{scope}
+\input{venn-hisat-6}
+\node at(1.2cm, -0.0cm) {SC1~(16507)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-hisat-7}
+\node at(1.2cm, -0.0cm) {SC2~(14396)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-hisat-8}
+\node at(1.2cm, -0.0cm) {SC3~(16711)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-hisat-9}
+\node at(1.2cm, -0.0cm) {SC4~(15814)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-hisat-10}
+\node at(1.2cm, -0.0cm) {SC5~(20960)};
+\end{scope}
+\end{scope}
+\end{scope}
+\draw[rounded corners] ($(bbox.south west) - (0.10cm, 0.30cm)$) rectangle ($(bbox.north east) + (0.1cm, -0.1cm)$);
+\node at ($(bbox.south) - (0.00cm, 0.2cm)$) [label=below:{(HISAT2)}]{};
+
+\end{tikzpicture}
+\end{document}

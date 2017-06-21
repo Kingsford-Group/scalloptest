@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
 dir=`pwd`
 outdir=$dir/encode10/accuracy
 mkdir -p $outdir
@@ -14,7 +19,7 @@ do
 				continue
 			fi
 	
-			accfile=$dir//encode10/collect.B759/$tt.$ppp.$kkk
+			accfile=$1/$tt.$ppp.$kkk
 			tmpfile=$dir/tmpfile.R
 			rm -rf $tmpfile
 			

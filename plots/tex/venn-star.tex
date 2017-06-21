@@ -1,0 +1,74 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usetikzlibrary{calc}
+\usetikzlibrary{petri}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{fit}
+
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=1pt]
+
+
+% transcomb
+\begin{scope}[local bounding box = bbox]
+% first layer
+\begin{scope}
+\begin{scope}
+\input{venn-star-1}
+\node at(1.3cm, -0.0cm) {ST1~(19726)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-star-2}
+\node at(1.3cm, -0.0cm) {ST2~(19744)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-star-3}
+\node at(1.3cm, -0.0cm) {ST3~(21287)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-star-4}
+\node at(1.3cm, -0.0cm) {TC1~(22821)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-star-5}
+\node at(1.3cm, -0.0cm) {TC2~(22331)};
+\end{scope}
+\end{scope}
+
+% second layer
+\begin{scope}[yshift = -3.0cm]
+\begin{scope}
+\input{venn-star-6}
+\node at(1.3cm, -0.0cm) {SC1~(20064)};
+\end{scope}
+\begin{scope}[xshift=3.2cm]
+\input{venn-star-7}
+\node at(1.3cm, -0.0cm) {SC2~(17437)};
+\end{scope}
+\begin{scope}[xshift=6.4cm]
+\input{venn-star-8}
+\node at(1.3cm, -0.0cm) {SC3~(19945)};
+\end{scope}
+\begin{scope}[xshift=9.6cm]
+\input{venn-star-9}
+\node at(1.3cm, -0.0cm) {SC4~(19017)};
+\end{scope}
+\begin{scope}[xshift=12.8cm]
+\input{venn-star-10}
+\node at(1.3cm, -0.0cm) {SC5~(26617)};
+\end{scope}
+\end{scope}
+\end{scope}
+\draw[rounded corners] ($(bbox.south west) - (0.10cm, 0.40cm)$) rectangle ($(bbox.north east) + (0.1cm, 0.1cm)$);
+\node at ($(bbox.south) - (0.00cm, 0.3cm)$) [label=below:{(STAR)}]{};
+
+
+\end{tikzpicture}
+\end{document}
