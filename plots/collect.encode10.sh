@@ -4,6 +4,17 @@ list=../data/encode10.list
 summary=./encode10/collect.B759
 mkdir -p $summary
 
+
+# collect results for time
+rm -rf $summary/time
+for x in `cat $list`
+do
+	id=`echo $x | cut -f 1 -d ":"`
+	./collect.encode10.time.sh $id scallop.B759 stringtie transcomb >> $summary/time
+done
+
+exit
+
 # collect class results with zero parameters
 rm -rf $summary/train.class.zero
 rm -rf $summary/test.class.zero
