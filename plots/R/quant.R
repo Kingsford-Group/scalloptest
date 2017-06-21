@@ -4,19 +4,18 @@ error.bar <- function(x, y, upper, lower=upper, length=0.025, ...)
 	arrows(x,y+upper, x, y-lower, angle=90, code=3, length=length, ...)
 }
 
-plot.bar <- function(xx, yy, file, ylabel)
+draw.bar <- function(xx, yy, file, ylabel, xlabel)
 {
 	library("tikzDevice");
 	#tikz(file, width = 2.7, height = 3.0);
 	tikz(file, width = 1.9, height = 3.0);
+	#cc = c(2,2,2,3,3,4,4,4);
+	#q = c(4,7,1, 5,8,2, 6,3);
 	q = c(2,3,1, 5,6,4, 8,7);
 	cc = c(2,3,4,  2,3,4,  2,4);
 	maxy=max(xx + yy);
 	barx = barplot(xx[q], beside=TRUE, col=cc, ylim=c(0, maxy), space = c(0,0,0,0.5,0,0,0.5,0), yaxt = 'n', xaxt = 'n');
-
-	axis(1, at = c(1.5, 5.0, 8.0), tick = FALSE, labels = c("TH", "ST", ""), mgp = c(0,0.5,0));
-	axis(1, at = c(1.5, 5.0, 8.0), tick = FALSE, labels = c("", "", "HI"), mgp = c(0,0.5,0));
-
+	axis(1, at = c(4.5), tick = FALSE, labels = c(xlabel), mgp = c(0,0.5,0));
 	axis(2, mgp = c(0, 0.275, 0), tck = -0.05);
 	mtext(ylabel, 2, line = 1.3);
 	#axis(1, at = c(1.5, 5.5, 9.0), tick = FALSE, labels = c("TopHat", "STAR", "HISAT"), line = -0.5);
@@ -27,10 +26,9 @@ plot.bar <- function(xx, yy, file, ylabel)
 	dev.off();
 }
 
-plot.accuracy <- function(datafile, texfile1, texfile2)
+plot.quant = function(datafile, texfile1, texfile2, xlabel)
 {
 	data = read.table(datafile);
-	
 	xx = c();
 	yy = c();
 	
@@ -39,12 +37,12 @@ plot.accuracy <- function(datafile, texfile1, texfile2)
 		xx[k] = mean(data[, k * 2 + 0]);
 		yy[k] = sd(data[, k * 2 + 0]);
 	}
-	plot.bar(xx, yy, texfile1, "Correct Transcripts");
-
+	draw.bar(xx, yy, texfile1, "Correct Transcripts", xlabel);
+	
 	for (k in seq(1, 8))
 	{
 		xx[k] = mean(data[, k * 2 + 1]);
 		yy[k] = sd(data[, k * 2 + 1]);
 	}
-	plot.bar(xx, yy, texfile2, "Precision");
+	draw.bar(xx, yy, texfile2, "Precision", xlabel);
 }

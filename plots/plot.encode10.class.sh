@@ -5,7 +5,7 @@ dir=`pwd`
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
 
-sumdir=$dir/../summary/encode10/class.B759
+sumdir=$dir//encode10/collect.B759
 outdir=$dir/encode10/class
 mkdir -p $outdir
 
@@ -22,8 +22,6 @@ R CMD BATCH $tmpfile
 for id in `echo "train-class test-class"`
 do
 	$dir/wrap.sh $id.tex
-	cat $id.tex | sed 's/Sensitivity/Sensitivity~(\\%)/g' > x; mv x $id.tex
-	cat $id.tex | sed 's/Precision/Precision~(\\%)/g' > x; mv x $id.tex
 	$dir/myepstool.sh $id
 done
 

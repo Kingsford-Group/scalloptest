@@ -12,12 +12,6 @@ algo1=$2
 algo2=$3
 algo3=$4
 
-if [ "$id" == "" ];
-then
-	echo "please provide id through -i"
-	exit
-fi
-
 cc=""
 for aa in `echo "tophat star hisat"`
 do

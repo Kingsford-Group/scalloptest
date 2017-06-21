@@ -1,34 +1,23 @@
 #!/bin/bash
 
-id=""
-
-while getopts "i:" arg
-do
-	case $arg in 
-	i) 
-		id=$OPTARG
-		;;
-	esac
-done
-
-results=../results/sequin
-
-algo1="scallop.B759"
-algo2="stringtie"
-algo3="transcomb"
-
-#abd="1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10"
-#abd="0.01 1.0 2.5 5.0 7.5 10 25 50 75 100"
-abd="0.01 1.0 2.5 5.0 7.5 10"
-
-if [ "$id" == "" ];
-then
-	echo "please provide id through -i"
+if [ "$#" != "4" ]; then
+	echo "ID algo1 algo2 algo3"
 	exit
 fi
 
-#echo "#accession algorithm aligner sensitivity(%) precision(%)"
 
+id=$1
+algo1=$2
+algo2=$3
+algo3=$4
+
+list=../data/sequin.list
+results=../results/sequin
+
+abd="0.01 1.0 2.5 5.0 7.5 10"
+#abd="0.01 1 2.5 5 7.5 10 25 50 75 100"
+
+#echo "#accession algorithm aligner sensitivity(%) precision(%)"
 for aa in `echo "tophat star hisat"`
 do
 	cc=""

@@ -1,31 +1,20 @@
 #!/bin/bash
 
-id=""
+if [ "$#" != "4" ]; then
+	echo "ID algo1 algo2 algo3"
+	exit
+fi
 
-while getopts "i:" arg
-do
-	case $arg in 
-	i) 
-		id=$OPTARG
-		;;
-	esac
-done
+
+id=$1
+algo1=$2
+algo2=$3
+algo3=$4
 
 list=../data/encode10.list
 results=../results/encode10
 
-algo1="scallop.B759"
-algo2="stringtie"
-algo3="transcomb"
-
-#abd="1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10"
 abd="0.01 1 2.5 5 7.5 10 25 50 75 100"
-
-if [ "$id" == "" ];
-then
-	echo "please provide id through -i"
-	exit
-fi
 
 #echo "#accession algorithm aligner sensitivity(%) precision(%)"
 
