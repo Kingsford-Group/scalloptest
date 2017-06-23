@@ -27,6 +27,25 @@ plot.bar <- function(xx, yy, file, ylabel)
 	dev.off();
 }
 
+plot.bar2 <- function(xx, yy, file, ylabel)
+{
+	library("tikzDevice");
+	tikz(file, width = 1.8, height = 3.0);
+	q = c(2,1, 5,4, 8,7);
+	cc = c(6,4,  6,4,  6,4);
+	maxy=max(xx + yy);
+	barx = barplot(xx[q], beside=TRUE, col=cc, ylim=c(0, maxy), space = c(0,0,0.5,0,0.5,0), yaxt = 'n', xaxt = 'n');
+
+	axis(1, at = c(1.0, 3.5, 6.0), tick = FALSE, labels = c("TH", "", ""), mgp = c(0,0.5,0));
+	axis(1, at = c(1.0, 3.5, 6.0), tick = FALSE, labels = c("", "ST", ""), mgp = c(0,0.5,0));
+	axis(1, at = c(1.0, 3.5, 6.0), tick = FALSE, labels = c("", "", "HI"), mgp = c(0,0.5,0));
+
+	axis(2, mgp = c(0, 0.275, 0), tck = -0.05);
+	mtext(ylabel, 2, line = 1.3);
+	error.bar(barx, xx[q], yy[q]);
+	dev.off();
+}
+
 plot.accuracy <- function(datafile, texfile1, texfile2)
 {
 	data = read.table(datafile);
@@ -47,4 +66,27 @@ plot.accuracy <- function(datafile, texfile1, texfile2)
 		yy[k] = sd(data[, k * 2 + 1]);
 	}
 	plot.bar(xx, yy, texfile2, "Precision");
+}
+
+
+plot.accuracy2 <- function(datafile, texfile1, texfile2)
+{
+	data = read.table(datafile);
+	
+	xx = c();
+	yy = c();
+	
+	for (k in seq(1, 8))
+	{
+		xx[k] = mean(data[, k * 2 + 0]);
+		yy[k] = sd(data[, k * 2 + 0]);
+	}
+	plot.bar2(xx, yy, texfile1, "Correct Transcripts");
+
+	for (k in seq(1, 8))
+	{
+		xx[k] = mean(data[, k * 2 + 1]);
+		yy[k] = sd(data[, k * 2 + 1]);
+	}
+	plot.bar2(xx, yy, texfile2, "Precision");
 }
