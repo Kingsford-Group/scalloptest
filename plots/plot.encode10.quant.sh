@@ -34,8 +34,6 @@ do
 		for id in `echo "$ppp-quant$kkk-correct $ppp-quant$kkk-precision"`
 		do
 			$dir/wrap.sh $id.tex
-			cat $id.tex | sed 's/Sensitivity/Sensitivity~(\\%)/g' > x; mv x $id.tex
-			cat $id.tex | sed 's/Precision/Precision~(\\%)/g' > x; mv x $id.tex
 			$dir/myepstool.sh $id
 		done
 		

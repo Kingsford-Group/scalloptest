@@ -4,6 +4,23 @@ list=../data/encode10.list
 summary=./encode10/collect.B759
 mkdir -p $summary
 
+# collect multi.cuff-exon results with default parameters (for cufflinks)
+rm -rf $summary/train.multi.cuff.default
+rm -rf $summary/test.multi.cuff.default
+for x in `cat $list | head -n 5`
+do
+	id=`echo $x | cut -f 1 -d ":"`
+	./collect.encode10.multi.sh $id scallop.B759.1 cufflinks.default stringtie.2.5 >> $summary/train.multi.cuff.default
+done
+
+for x in `cat $list | tail -n 5`
+do
+	id=`echo $x | cut -f 1 -d ":"`
+	./collect.encode10.multi.sh $id scallop.B759.1 cufflinks.default stringtie.2.5 >> $summary/test.multi.cuff.default
+done
+
+exit
+
 # collect venn
 rm -rf $summary/venn.aligner
 rm -rf $summary/venn.algo
