@@ -7,6 +7,7 @@ fi
 
 dir=`pwd`
 outdir=$dir/encode10/cuff
+texdir=$dir/tex
 mkdir -p $outdir
 
 for tt in `echo "train test"`
@@ -37,3 +38,7 @@ do
 		rm -rf $tmpfile
 	done
 done
+
+cd $outdir
+cp $texdir/cuff.tex .
+$dir/myepstool.sh cuff

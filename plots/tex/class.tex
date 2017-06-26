@@ -1,0 +1,24 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+
+\renewcommand\big{\fontsize{10pt}{10pt}\selectfont}   
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{tabular}{lllll}
+
+	\begin{minipage}[t][][t]{0.10cm} {\vspace{-1.7cm} \big\textsf{A}} \end{minipage}
+	\begin{minipage}[b][][b]{10.0cm} {\centering \includegraphics[height = 1.7cm]{test-class.eps}} \end{minipage}\\
+
+	\begin{minipage}[t][][t]{0.10cm} {\vspace{-1.7cm} \big\textsf{B}} \end{minipage}
+	\begin{minipage}[b][][b]{10.0cm} {\centering \includegraphics[height = 1.7cm]{train-class.eps}} \end{minipage}
+
+\end{tabular}
+
+\end{document}
