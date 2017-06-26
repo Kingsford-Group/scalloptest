@@ -12,6 +12,7 @@ rm -rf $tmpfile
 
 sumdir=$1
 outdir=$dir/encode10/class
+texdir=$dir/tex
 mkdir -p $outdir
 
 echo "library(\"tikzDevice\")" > $tmpfile
@@ -29,5 +30,8 @@ do
 	$dir/wrap.sh $id.tex
 	$dir/myepstool.sh $id
 done
+
+cp $texdir/class.tex .
+$dir/myepstool.sh class
 
 rm -rf $tmpfile

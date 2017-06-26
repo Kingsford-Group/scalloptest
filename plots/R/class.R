@@ -62,7 +62,7 @@ plot.class <- function(datafile, texfile)
 	axis(2, mgp = c(0, -0.7, -1.7), tck = -0.03);
 	mtext("Correct Transcripts", 2, line =-0.20);
 	error.bar(barx, xx[pp,], yy[pp,])
-#legend(40, max(xx + yy), c("StringTie", "TransComb","Scallop"), pch = c(19,19,19), col = c(2,3,4),bty='n');
+	legend(60, max(xx + yy), c("StringTie", "TransComb","Scallop"), pch = c(19,19,19), col = c(2,3,4),bty='n');
 #legend(60, max(xx + yy), c("TopHat2", "STAR", "HISAT2"), pch = c(0,1,2), col = c(1,1,1),bty='n');
 	
 	dev.off();
