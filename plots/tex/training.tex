@@ -1,0 +1,57 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+
+\renewcommand\big{\fontsize{10pt}{10pt}\selectfont}   
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{tabular}{lllll}
+
+	% first layer
+	\begin{minipage}[t][][t]{0.01cm} {\vspace{-2.00cm} \big\textsf{A}} \end{minipage}
+	\begin{minipage}[b][][b]{2.01cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR534319.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{1.81cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR534291.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.81cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR545695.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.81cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR387661.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.81cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR307911.eps}} \end{minipage}\\
+
+	% second layer
+	\begin{minipage}[t][][t]{0.04cm} {\vspace{-1.7cm} \big\textsf{B}} \end{minipage}
+	\begin{minipage}[b][][b]{1.23cm} {\centering \includegraphics[height = 1.7cm]{../auc/train-auc.eps}} \end{minipage} 
+
+	\begin{minipage}[t][][t]{0.12cm} {\vspace{-1.7cm} \big\textsf{C}} \end{minipage}
+	\begin{minipage}[b][][b]{1.23cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-multi-default-correct.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{1.23cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-multi-default-precision.eps}} \end{minipage}
+
+	\begin{minipage}[t][][t]{0.12cm} {\vspace{-1.7cm} \big\textsf{D}} \end{minipage}
+	\begin{minipage}[b][][b]{1.18cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-multi-zero-correct.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{1.23cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-multi-zero-precision.eps}} \end{minipage}
+
+	\begin{minipage}[t][][t]{0.12cm} {\vspace{-1.7cm} \big\textsf{E}} \end{minipage} \hspace{-0.1cm}
+	\begin{minipage}[b][][b]{1.18cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-single-default-correct.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.23cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/train-single-default-precision.eps}} \end{minipage}\\
+
+
+	% third layer
+	%\begin{minipage}[t][][t]{0.10cm} {\vspace{-1.7cm} \big\textsf{F}} \end{minipage}
+	%\begin{minipage}[b][][b]{10.0cm} {\centering \includegraphics[height = 1.7cm]{class-train.eps}} \end{minipage}\\
+
+	% fourth layer
+	\begin{minipage}[t][][t]{0.15cm} {\vspace{-1.7cm} \big\textsf{F}} \end{minipage} \hspace{-0.1cm}
+	\begin{minipage}[b][][b]{1.18cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant1-correct.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.35cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant1-precision.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.18cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant2-correct.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.35cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant2-precision.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.18cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant3-correct.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.30cm} {\centering \includegraphics[height = 1.7cm]{../quant/train-quant3-precision.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.40cm} {\centering \includegraphics[height = 1.20cm]{../../legend/legend.eps} \\ \vspace{0.25cm} } \end{minipage} 
+
+\end{tabular}
+
+\end{document}

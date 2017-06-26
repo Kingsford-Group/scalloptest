@@ -3,6 +3,7 @@
 dir=`pwd`
 datadir=$dir/encode65/collect.B759
 outdir=$dir/encode65/adjust
+texdir=$dir/tex
 mkdir -p $outdir
 
 for ppp in `echo "multi"`
@@ -40,6 +41,8 @@ do
 				for id in `echo "$ppp-$kkk-$sss$ttt"`
 				do
 					$dir/wrap.sh $id.tex
+					cat $id.tex | sed 's/ENCFF//g' > NOENCFF;
+					mv NOENCFF $id.tex
 					$dir/myepstool.sh $id
 				done
 
@@ -48,3 +51,7 @@ do
 		done
 	done
 done
+
+cd $outdir
+cat $texdir/adjust.tex | sed 's/NAME/multi-default-correct/g' > multi-default-correct.tex; $dir/myepstool.sh multi-default-correct
+cat $texdir/adjust.tex | sed 's/NAME/multi-default-precision/g' > multi-default-precision.tex; $dir/myepstool.sh multi-default-precision

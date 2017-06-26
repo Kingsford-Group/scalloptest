@@ -1,0 +1,44 @@
+\documentclass{minimal}
+\usepackage{pslatex}
+\usepackage{graphicx}
+\usepackage{scalefnt}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+
+\renewcommand\big{\fontsize{10pt}{10pt}\selectfont}   
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\begin{tabular}{lllll}
+
+	% first layer
+	\begin{minipage}[t][][t]{0.10cm} {\vspace{-2.00cm} \big\textsf{A}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743144.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743145.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743146.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR4011970.eps}} \end{minipage}\\
+
+	% second layer
+	\begin{minipage}[t][][t]{0.10cm} {\vspace{-2.00cm} \big\textsf{B}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743147.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743148.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743149.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{2.11cm} {\centering \includegraphics[height = 2.11cm]{../roc/SRR3743150.eps}} \end{minipage}\\
+
+	% third layer
+	\begin{minipage}[t][][t]{0.20cm} {\vspace{-1.7cm} \big\textsf{C}} \end{minipage}
+	\begin{minipage}[b][][b]{1.4cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/spike-multi-default-correct.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{1.4cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/spike-multi-default-precision.eps}} \end{minipage}
+
+	\hspace{0.2cm}
+
+	\begin{minipage}[t][][t]{0.20cm} {\vspace{-1.7cm} \big\textsf{D}} \end{minipage}
+	\begin{minipage}[b][][b]{1.4cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/neat-multi-default-correct.eps}} \end{minipage} 
+	\begin{minipage}[b][][b]{1.4cm} {\centering \includegraphics[height = 1.7cm]{../accuracy/neat-multi-default-precision.eps}} \end{minipage}
+	\begin{minipage}[b][][b]{1.80cm} {\centering \includegraphics[height = 1.20cm]{../../legend/legend.eps} \\ \vspace{0.25cm} } \end{minipage} 
+
+\end{tabular}
+
+\end{document}

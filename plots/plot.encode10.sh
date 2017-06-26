@@ -1,7 +1,8 @@
 #!/bin/bash
 
-cdir=`pwd`/encode10/collect.B759
-texdir=`pwd`/tex
+dir=`pwd`
+cdir=$dir/encode10/collect.B759
+texdir=$dir/tex
 
 #./plot.encode10.roc.sh $cdir
 #./plot.encode10.time.sh $cdir
@@ -11,5 +12,19 @@ texdir=`pwd`/tex
 #./plot.encode10.quant.sh $cdir
 #./plot.encode10.cuff.sh $cdir
 
-#./plot.encode10.training.sh
-./plot.encode10.testing.sh
+
+# plot training
+outdir=$dir/encode10/training
+mkdir -p $outdir
+
+cp $texdir/training.tex $outdir
+cd $outdir
+$dir/myepstool.sh training
+
+# plot testing
+outdir=$dir/encode10/testing
+mkdir -p $outdir
+
+cp $texdir/testing.tex $outdir
+cd $outdir
+$dir/myepstool.sh testing
