@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" != "5" ]; then
-	echo "usage $0 cur-dir bam-file gtf-file coverage strand"
+if [ "$#" != "6" ] && [ "$#" != "5" ]; then
+	echo "usage $0 cur-dir bam-file gtf-file coverage strand [quantfile]"
 	exit
 fi
 
@@ -34,4 +34,11 @@ mv scallop.tmp.xxx.gtf scallop.gtf
 
 $bin/gffcompare -o gffmul -r $gtf scallop.gtf -M -N
 $bin/gffcompare -o gffall -r $gtf scallop.gtf
+$bin/gtfcuff acc-single gffall.scallop.gtf.tmap > gffall.single
+$bin/gtfcuff classify gffmul.scallop.gtf.tmap scallop.gtf > gffmul.class
+
+if [ "$#" == "6" ]; then
+	$bin/gtfcuff acc-quant gffmul.scallop.gtf.tmap $6 0.1 > gffmul.quant
+fi
+
 cd -

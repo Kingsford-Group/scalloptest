@@ -51,13 +51,13 @@ function make.scripts
 	done
 }
 
-make.scripts scallop B759.default default
-make.scripts stringtie default default
-make.scripts transcomb default default
+make.scripts scallop B759.0.01 0.01
+make.scripts stringtie 0.01 0.01
+#make.scripts transcomb default default
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
-nohup cat $xarglist | xargs -L 1 -I CMD -P 32 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 40 bash -c CMD > /tmp/null &

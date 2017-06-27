@@ -1,0 +1,9 @@
+This folder should include/link the following binary programs:
+cufflinks
+gffcompare
+gtfcuff
+gtfformat
+gtfmerge
+scallop
+stringtie
+transcomb

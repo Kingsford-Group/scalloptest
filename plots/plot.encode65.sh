@@ -19,10 +19,22 @@ do
 					ttt=""
 				fi
 
-				if [ "$sss" == "correct2" ] || [ "$sss" == "correct3" ]; then
+				if [ "$kkk" == "default" ] && [ "$sss" == "correct3" ]; then
 					max=19000
-				else
+				elif [ "$kkk" == "default" ] && [ "$sss" == "correct2" ]; then
+					max=19000
+				elif [ "$kkk" == "default" ] && [ "$sss" == "precision2" ]; then
 					max=70
+				elif [ "$kkk" == "default" ] && [ "$sss" == "precision3" ]; then
+					max=70
+				elif [ "$kkk" == "zero" ] && [ "$sss" == "correct3" ]; then
+					max=20000
+				elif [ "$kkk" == "zero" ] && [ "$sss" == "correct2" ]; then
+					max=20000
+				elif [ "$kkk" == "zero" ] && [ "$sss" == "precision2" ]; then
+					max=60
+				elif [ "$kkk" == "zero" ] && [ "$sss" == "precision3" ]; then
+					max=60
 				fi
 
 				accfile=$datadir/$ppp.$kkk.$sss$ttt

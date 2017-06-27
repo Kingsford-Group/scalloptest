@@ -47,6 +47,7 @@ function make.scripts
 		for aa in `echo $aligns`
 		do
 			bam=$datadir/$id/$aa.sort.bam
+			quant=$datadir/$id/quant.sf
 	
 			if [ ! -s $bam ]; then
 				echo "make sure $bam is available"
@@ -55,25 +56,41 @@ function make.scripts
 	
 			cur=$results/$id.$aa/$algo.$suffix
 	
-			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss" >> $scripts
+			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $quant" >> $scripts
 		done
 	done
 }
 
-make.scripts scallop B759.25 25
-#make.scripts scallop B759.0.01 0.01
-#make.scripts scallop B759.1 1
-#make.scripts scallop B759.2.5 2.5
-#make.scripts scallop B759.5 5
-#make.scripts scallop B759.7.5 7.5
-#make.scripts scallop B759.10 10
-#make.scripts scallop B759.50 50
-#make.scripts scallop B759.75 75
-#make.scripts scallop B759.100 100
+make.scripts cufflinks default 999
+
+#make.scripts stringtie 0.01 0.01
+#make.scripts transcomb 0.01 0.01
+
+#make.scripts stringtie 0621.0.01 0.01
+#make.scripts stringtie 0621.1 1
+#make.scripts stringtie 0621.2.5 2.5
+#make.scripts stringtie 0621.5 5
+#make.scripts stringtie 0621.7.5 7.5
+#make.scripts stringtie 0621.10 10
+#make.scripts stringtie 0621.25 25
+#make.scripts stringtie 0621.50 50
+#make.scripts stringtie 0621.75 75
+#make.scripts stringtie 0621.100 100
+
+#make.scripts transcomb 0620.0.01 0.01
+#make.scripts transcomb 0620.1 1
+#make.scripts transcomb 0620.2.5 2.5
+#make.scripts transcomb 0620.5 5
+#make.scripts transcomb 0620.7.5 7.5
+#make.scripts transcomb 0620.10 10
+#make.scripts transcomb 0620.25 25
+#make.scripts transcomb 0620.50 50
+#make.scripts transcomb 0620.75 75
+#make.scripts transcomb 0620.100 100
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
-nohup cat $xarglist | xargs -L 1 -I CMD -P 40 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 20 bash -c CMD > /tmp/null &
