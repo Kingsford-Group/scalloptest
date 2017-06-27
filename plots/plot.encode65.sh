@@ -8,7 +8,7 @@ mkdir -p $outdir
 
 for ppp in `echo "multi"`
 do
-	for kkk in `echo "default"`
+	for kkk in `echo "zero default"`
 	do
 		for sss in `echo "correct2 correct3 precision2 precision3"`
 		do
@@ -53,5 +53,8 @@ do
 done
 
 cd $outdir
+cat $texdir/adjust.tex | sed 's/NAME/multi-zero-correct/g' > multi-zero-correct.tex; $dir/myepstool.sh multi-zero-correct
+cat $texdir/adjust.tex | sed 's/NAME/multi-zero-precision/g' > multi-zero-precision.tex; $dir/myepstool.sh multi-zero-precision
+
 cat $texdir/adjust.tex | sed 's/NAME/multi-default-correct/g' > multi-default-correct.tex; $dir/myepstool.sh multi-default-correct
 cat $texdir/adjust.tex | sed 's/NAME/multi-default-precision/g' > multi-default-precision.tex; $dir/myepstool.sh multi-default-precision

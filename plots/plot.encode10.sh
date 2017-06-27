@@ -4,10 +4,7 @@ dir=`pwd`
 cdir=$dir/encode10/collect.B759
 texdir=$dir/tex
 
-
 ./plot.encode10.cuff.sh $cdir
-exit
-
 ./plot.encode10.venn.sh $cdir
 ./plot.encode10.class.sh $cdir
 ./plot.encode10.roc.sh $cdir

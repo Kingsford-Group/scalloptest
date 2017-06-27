@@ -19,7 +19,6 @@ do
 	./collect.encode10.multi.sh $id scallop.B759.1 cufflinks.default stringtie.2.5 >> $summary/test.multi.cuff.default
 done
 
-exit
 
 # collect venn
 rm -rf $summary/venn.aligner
@@ -30,8 +29,6 @@ do
 	cat ../results/encode10/$id.venn/aligner.summary >> $summary/venn.aligner
 	cat ../results/encode10/$id.venn/algo.summary >> $summary/venn.algo
 done
-
-exit
 
 
 # collect class results with zero parameters
@@ -124,7 +121,6 @@ do
 	./collect.encode10.roc.sh $id scallop.B759 stringtie transcomb > $summary/$id
 done
 
-exit
 
 # collect results for time
 rm -rf $summary/time
@@ -133,7 +129,4 @@ do
 	id=`echo $x | cut -f 1 -d ":"`
 	./collect.encode10.time.sh $id scallop.B759 stringtie transcomb >> $summary/time
 done
-
-exit
-
 

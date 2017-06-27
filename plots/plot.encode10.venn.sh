@@ -16,11 +16,6 @@ outdir=$dir/encode10/venn
 mkdir -p $outdir
 
 
-cd $outdir
-cp $texdir/venn.tex .
-$dir/myepstool.sh venn
-exit
-
 
 echo "library(\"tikzDevice\")" > $tmpfile
 echo "source(\"$dir/R/venn.R\")" >> $tmpfile
@@ -47,4 +42,6 @@ done
 
 rm -rf $tmpfile
 
-
+cd $outdir
+cp $texdir/venn.tex .
+$dir/myepstool.sh venn
