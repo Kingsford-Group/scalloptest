@@ -6,6 +6,8 @@ tmpfile=$dir/tmpfile.R
 echo "library(\"tikzDevice\")" > $tmpfile
 echo "source(\"$dir/R/legend.R\")" >> $tmpfile
 echo "plot.legend(\"legend.tex\")" >> $tmpfile
+echo "plot.legend3(\"legend3.tex\")" >> $tmpfile
+echo "plot.legend2(\"legend2.tex\")" >> $tmpfile
 echo "plot.cuff.legend(\"cuff-legend.tex\")" >> $tmpfile
 
 outdir=$dir/legend
@@ -17,6 +19,12 @@ R CMD BATCH $tmpfile
 
 $dir/wrap.sh legend.tex
 $dir/myepstool.sh legend
+
+$dir/wrap.sh legend3.tex
+$dir/myepstool.sh legend3
+
+$dir/wrap.sh legend2.tex
+$dir/myepstool.sh legend2
 
 $dir/wrap.sh cuff-legend.tex
 $dir/myepstool.sh cuff-legend

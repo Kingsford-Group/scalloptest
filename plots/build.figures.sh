@@ -6,7 +6,6 @@
 
 ./plot.legend.sh
 
-./plot.encode10.sh
 ./plot.encode65.sh
 ./plot.sequin.sh
 

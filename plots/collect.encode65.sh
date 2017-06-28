@@ -39,13 +39,13 @@ cat $summary/multi.default.precision2 | sort -k3,3n > tmpfile; mv tmpfile $summa
 cat $summary/multi.default.correct3 | sort -k2,2nr > tmpfile; mv tmpfile $summary/multi.default.correct3
 cat $summary/multi.default.precision3 | sort -k3,3nr > tmpfile; mv tmpfile $summary/multi.default.precision3
 
-cat $summary/multi.default.correct3 | head -n 17 | tail -n 17 | sort -k2,2n > $summary/multi.default.correct3A
-cat $summary/multi.default.correct3 | head -n 34 | tail -n 17 | sort -k2,2n > $summary/multi.default.correct3B
-cat $summary/multi.default.correct3 | head -n 50 | tail -n 17 | sort -k2,2n > $summary/multi.default.correct3C
+cat $summary/multi.default.correct3 | head -n 20 | tail -n 20 | sort -k2,2n > $summary/multi.default.correct3A
+cat $summary/multi.default.correct3 | head -n 40 | tail -n 20 | sort -k2,2n > $summary/multi.default.correct3B
+cat $summary/multi.default.correct3 | head -n 50 | tail -n 10 | sort -k2,2n > $summary/multi.default.correct3C
 
-cat $summary/multi.default.precision3 | head -n 17 | tail -n 17 | sort -k3,3n > $summary/multi.default.precision3A
-cat $summary/multi.default.precision3 | head -n 34 | tail -n 17 | sort -k3,3n > $summary/multi.default.precision3B
-cat $summary/multi.default.precision3 | head -n 50 | tail -n 17 | sort -k3,3n > $summary/multi.default.precision3C
+cat $summary/multi.default.precision3 | head -n 20 | tail -n 20 | sort -k3,3n > $summary/multi.default.precision3A
+cat $summary/multi.default.precision3 | head -n 30 | tail -n 20 | sort -k3,3n > $summary/multi.default.precision3B
+cat $summary/multi.default.precision3 | head -n 50 | tail -n 10 | sort -k3,3n > $summary/multi.default.precision3C
 
 
 # collect multi-exon results with zero parameters
@@ -83,10 +83,10 @@ cat $summary/multi.zero.precision2 | sort -k3,3n > tmpfile; mv tmpfile $summary/
 cat $summary/multi.zero.correct3 | sort -k2,2nr > tmpfile; mv tmpfile $summary/multi.zero.correct3
 cat $summary/multi.zero.precision3 | sort -k3,3nr > tmpfile; mv tmpfile $summary/multi.zero.precision3
 
-cat $summary/multi.zero.correct3 | head -n 17 | tail -n 17 | sort -k2,2n > $summary/multi.zero.correct3A
-cat $summary/multi.zero.correct3 | head -n 34 | tail -n 17 | sort -k2,2n > $summary/multi.zero.correct3B
-cat $summary/multi.zero.correct3 | head -n 50 | tail -n 17 | sort -k2,2n > $summary/multi.zero.correct3C
+cat $summary/multi.zero.correct3 | head -n 20 | tail -n 20 | sort -k2,2n > $summary/multi.zero.correct3A
+cat $summary/multi.zero.correct3 | head -n 40 | tail -n 20 | sort -k2,2n > $summary/multi.zero.correct3B
+cat $summary/multi.zero.correct3 | head -n 50 | tail -n 10 | sort -k2,2n > $summary/multi.zero.correct3C
 
-cat $summary/multi.zero.precision3 | head -n 17 | tail -n 17 | sort -k3,3n > $summary/multi.zero.precision3A
-cat $summary/multi.zero.precision3 | head -n 34 | tail -n 17 | sort -k3,3n > $summary/multi.zero.precision3B
-cat $summary/multi.zero.precision3 | head -n 50 | tail -n 17 | sort -k3,3n > $summary/multi.zero.precision3C
+cat $summary/multi.zero.precision3 | head -n 20 | tail -n 20 | sort -k3,3n > $summary/multi.zero.precision3A
+cat $summary/multi.zero.precision3 | head -n 40 | tail -n 20 | sort -k3,3n > $summary/multi.zero.precision3B
+cat $summary/multi.zero.precision3 | head -n 50 | tail -n 10 | sort -k3,3n > $summary/multi.zero.precision3C

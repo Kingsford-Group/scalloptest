@@ -5,18 +5,25 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage[absolute,overlay]{textpos}
 
 \renewcommand\big{\fontsize{10pt}{10pt}\selectfont}   
-\renewcommand{\arraystretch}{1.5}
+%\renewcommand{\arraystretch}{1.5}
 
 \begin{document}
-\begin{tabular}{lllll}
-	\begin{minipage}[t][][b]{0.252\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3A.eps}} \end{minipage} 
-	\begin{minipage}[t][][b]{0.005\textwidth} {} \end{minipage} 
-	\begin{minipage}[t][][b]{0.255\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3B.eps}} \end{minipage} 
-	\begin{minipage}[t][][b]{0.250\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3C.eps}} \end{minipage} 
-	\begin{minipage}[t][][b]{0.250\textwidth} {\centering \includegraphics[width = \textwidth]{NAME2.eps}} \end{minipage} 
+\begin{tabular}[t]{ccccccc}
+	\multirow{3}{*}{ \begin{minipage}[t][][b]{0.250\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3A.eps}} \end{minipage} } & 
+	\multirow{3}{*}{ \begin{minipage}[t][][b]{0.245\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3B.eps}} \end{minipage} } & 
+	\begin{minipage}[t][][b]{0.250\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3C.eps}} \vfill \end{minipage} & 
+	\begin{minipage}[t][][b]{0.250\textwidth} {\centering \includegraphics[width = \textwidth]{NAME2.eps}} \vfill \end{minipage} \\
+
+ && \begin{minipage}[t][][t]{0.100\textwidth} {\centering \includegraphics[width = \textwidth]{../../legend/legend3.eps}} \end{minipage} & 
+    \begin{minipage}[t][][t]{0.085\textwidth} {\centering \includegraphics[width = \textwidth]{../../legend/legend2.eps}} \end{minipage}\\
+
+ && \begin{minipage}[t][][t]{0.090\textwidth} {\centering \includegraphics[width = \textwidth]{NAME3-summary.eps}} \end{minipage} & 
+    \begin{minipage}[t][][t]{0.090\textwidth} {\centering \includegraphics[width = \textwidth]{NAME2-summary.eps}} \end{minipage}
+
 \end{tabular}
 
 \end{document}

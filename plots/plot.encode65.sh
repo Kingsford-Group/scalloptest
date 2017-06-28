@@ -8,10 +8,33 @@ mkdir -p $outdir
 
 for ppp in `echo "multi"`
 do
-	for kkk in `echo "zero default"`
+	for kkk in `echo "default zero"`
 	do
 		for sss in `echo "correct2 correct3 precision2 precision3"`
 		do
+			# plot summary
+			accfile=$datadir/$ppp.$kkk.$sss
+			tmpfile=$dir/tmpfile.R
+			rm -rf $tmpfile
+			
+			echo "library(\"tikzDevice\")" > $tmpfile
+			echo "source(\"$dir/R/adjust.R\")" >> $tmpfile
+			
+			echo "plot.$sss.summary(\"$accfile\", \"$ppp-$kkk-$sss-summary.tex\")" >> $tmpfile
+			
+			cd $outdir
+			
+			R CMD BATCH $tmpfile
+			
+			for id in `echo "$ppp-$kkk-$sss-summary"`
+			do
+				$dir/wrap.sh $id.tex
+				$dir/myepstool.sh $id
+			done
+
+			rm -rf $tmpfile
+
+			# individial figures
 			for ttt in `echo "A B C"`
 			do
 				max=""
@@ -37,6 +60,11 @@ do
 					max=60
 				fi
 
+				pl="0"
+				if [ "$ttt" == "C" ]; then
+					pl="1"
+				fi
+
 				accfile=$datadir/$ppp.$kkk.$sss$ttt
 				tmpfile=$dir/tmpfile.R
 				rm -rf $tmpfile
@@ -44,7 +72,7 @@ do
 				echo "library(\"tikzDevice\")" > $tmpfile
 				echo "source(\"$dir/R/adjust.R\")" >> $tmpfile
 				
-				echo "plot.$sss(\"$accfile\", \"$ppp-$kkk-$sss$ttt.tex\", $max)" >> $tmpfile
+				echo "plot.$sss(\"$accfile\", \"$ppp-$kkk-$sss$ttt.tex\", $max, $pl)" >> $tmpfile
 				
 				cd $outdir
 				
@@ -65,8 +93,10 @@ do
 done
 
 cd $outdir
+cat $texdir/adjust.tex | sed 's/NAME/multi-default-correct/g' > multi-default-correct.tex; $dir/myepstool.sh multi-default-correct
+cat $texdir/adjust.tex | sed 's/NAME/multi-default-precision/g' > multi-default-precision.tex; $dir/myepstool.sh multi-default-precision
+
 cat $texdir/adjust.tex | sed 's/NAME/multi-zero-correct/g' > multi-zero-correct.tex; $dir/myepstool.sh multi-zero-correct
 cat $texdir/adjust.tex | sed 's/NAME/multi-zero-precision/g' > multi-zero-precision.tex; $dir/myepstool.sh multi-zero-precision
 
-cat $texdir/adjust.tex | sed 's/NAME/multi-default-correct/g' > multi-default-correct.tex; $dir/myepstool.sh multi-default-correct
-cat $texdir/adjust.tex | sed 's/NAME/multi-default-precision/g' > multi-default-precision.tex; $dir/myepstool.sh multi-default-precision
+exit
