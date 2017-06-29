@@ -337,6 +337,40 @@ summary.class("test.class.zero");
 print("\n");
 
 
+# multi.cuff-exon-cuff default
+print("multi-exon-cuff default sensitivity:");
+
+data = read.table(paste(encode10, "train.multi.cuff.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx1[k] = mean(data[, k * 2 + 0]);
+}
+print(sprintf("TRAINING TopHat2: scallop / cufflinks = %f", xx1[1] / xx1[2]));
+print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[3]));
+print(sprintf("TRAINING STAR: scallop / cufflinks = %f", xx1[4] / xx1[5]));
+print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[4] / xx1[6]));
+print(sprintf("TRAINING HISAT: scallop / cufflinks = %f", xx1[7] / xx1[8]));
+
+data = read.table(paste(encode10, "test.multi.cuff.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx2[k] = mean(data[, k * 2 + 0]);
+}
+print(sprintf("TESTING TopHat2: scallop / cufflinks = %f", xx2[1] / xx2[2]));
+print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[3]));
+print(sprintf("TESTING STAR: scallop / cufflinks = %f", xx2[4] / xx2[5]));
+print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[4] / xx2[6]));
+print(sprintf("TESTING HISAT: scallop / cufflinks = %f", xx2[7] / xx2[8]));
+
+xx = xx1 * 0.5 + xx2 * 0.5;
+print(sprintf("ALL TopHat2: scallop / cufflinks = %f", xx[1] / xx[2]));
+print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[3]));
+print(sprintf("ALL STAR: scallop / cufflinks = %f", xx[4] / xx[5]));
+print(sprintf("ALL STAR: scallop / stringtie = %f", xx[4] / xx[6]));
+print(sprintf("ALL HISAT: scallop / cufflinks = %f", xx[7] / xx[8]));
+print("\n");
+
+
 ## analysis time
 data = read.table(paste(encode10, "time", sep=""));
 cx = c();
@@ -359,3 +393,5 @@ print(sprintf("TopHat2: transcomb / stringtie = %f", xx[7] / xx[4]));
 print(sprintf("STAR: scallop / stringtie = %f", xx[2] / xx[5]));
 print(sprintf("STAR: transcomb / stringtie = %f", xx[8] / xx[5]));
 print(sprintf("HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
+
+
