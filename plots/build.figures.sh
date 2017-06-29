@@ -1,13 +1,14 @@
 #!/bin/bash
 
-./collect.encode10.sh
-./collect.encode65.sh
-./collect.sequin.sh
+#./collect.encode10.sh
+#./collect.encode65.sh
+#./collect.sequin.sh
 
-./plot.legend.sh
+#./plot.legend.sh
 
-./plot.encode65.sh
-./plot.sequin.sh
+#./plot.encode65.sh
+#./plot.sequin.sh
+./plot.encode10.sh
 
 figdir=./figures
 mkdir -p $figdir

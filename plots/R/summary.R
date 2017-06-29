@@ -1,6 +1,6 @@
-encode10 = "../encode10/collect.B759/";
-encode65 = "../encode65/collect.B759/";
-sequin = "../sequin/collect.B759/";
+encode10 = "encode10/collect.B759/";
+encode65 = "encode65/collect.B759/";
+sequin = "sequin/collect.B759/";
 
 xx = c();
 xx1 = c();
@@ -116,31 +116,31 @@ print("sensitivity on lower (1/3) expressed transcripts:");
 data = read.table(paste(encode10, "train.quant1.zero", sep=""));
 for (k in seq(1, 8))
 {
-	xx1[k] = mean(data[1:5, k * 2 + 0]);
+	xx1[k] = mean(data[, k * 2 + 0]);
 }
-print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[4]));
-print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[7]));
-print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[2] / xx1[5]));
-print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[2] / xx1[8]));
-print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[3] / xx1[6]));
+print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[3]));
+print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[4] / xx1[5]));
+print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[4] / xx1[6]));
+print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[7] / xx1[8]));
 
 data = read.table(paste(encode10, "test.quant1.zero", sep=""));
 for (k in seq(1, 8))
 {
-	xx2[k] = mean(data[6:10, k * 2 + 0]);
+	xx2[k] = mean(data[, k * 2 + 0]);
 }
-print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[4]));
-print(sprintf("TESTING TopHat2: scallop / transcomb = %f", xx2[1] / xx2[7]));
-print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[2] / xx2[5]));
-print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[2] / xx2[8]));
-print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[3] / xx2[6]));
+print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[2]));
+print(sprintf("TESTING TopHat2: scallop / transcomb = %f", xx2[1] / xx2[3]));
+print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[4] / xx2[5]));
+print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[4] / xx2[6]));
+print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[7] / xx2[8]));
 
 xx = xx1 * 0.5 + xx2 * 0.5;
-print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[4]));
-print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[7]));
-print(sprintf("ALL STAR: scallop / stringtie = %f", xx[2] / xx[5]));
-print(sprintf("ALL STAR: scallop / transcomb = %f", xx[2] / xx[8]));
-print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
+print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[2]));
+print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[3]));
+print(sprintf("ALL STAR: scallop / stringtie = %f", xx[4] / xx[5]));
+print(sprintf("ALL STAR: scallop / transcomb = %f", xx[4] / xx[6]));
+print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[7] / xx[8]));
 print("\n");
 
 ## analysis quant (2/3)
@@ -149,31 +149,31 @@ print("sensitivity on lower (2/3) expressed transcripts:");
 data = read.table(paste(encode10, "train.quant2.zero", sep=""));
 for (k in seq(1, 8))
 {
-	xx1[k] = mean(data[1:5, k * 2 + 0]);
+	xx1[k] = mean(data[, k * 2 + 0]);
 }
-print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[4]));
-print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[7]));
-print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[2] / xx1[5]));
-print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[2] / xx1[8]));
-print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[3] / xx1[6]));
+print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[3]));
+print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[4] / xx1[5]));
+print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[4] / xx1[6]));
+print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[7] / xx1[8]));
 
 data = read.table(paste(encode10, "test.quant2.zero", sep=""));
 for (k in seq(1, 8))
 {
-	xx2[k] = mean(data[6:10, k * 2 + 0]);
+	xx2[k] = mean(data[, k * 2 + 0]);
 }
-print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[4]));
-print(sprintf("TESTING TopHat2: scallop / transcomb = %f", xx2[1] / xx2[7]));
-print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[2] / xx2[5]));
-print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[2] / xx2[8]));
-print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[3] / xx2[6]));
+print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[2]));
+print(sprintf("TESTING TopHat2: scallop / transcomb = %f", xx2[1] / xx2[3]));
+print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[4] / xx2[5]));
+print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[4] / xx2[6]));
+print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[7] / xx2[8]));
 
 xx = xx1 * 0.5 + xx2 * 0.5;
-print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[4]));
-print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[7]));
-print(sprintf("ALL STAR: scallop / stringtie = %f", xx[2] / xx[5]));
-print(sprintf("ALL STAR: scallop / transcomb = %f", xx[2] / xx[8]));
-print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
+print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[2]));
+print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[3]));
+print(sprintf("ALL STAR: scallop / stringtie = %f", xx[4] / xx[5]));
+print(sprintf("ALL STAR: scallop / transcomb = %f", xx[4] / xx[6]));
+print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[7] / xx[8]));
 print("\n");
 
 ## analysis quant (3/3)
@@ -184,29 +184,29 @@ for (k in seq(1, 8))
 {
 	xx1[k] = mean(data[1:5, k * 2 + 0]);
 }
-print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[4]));
-print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[7]));
-print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[2] / xx1[5]));
-print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[2] / xx1[8]));
-print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[3] / xx1[6]));
+print(sprintf("TRAINING TopHat2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("TRAINING TopHat2: scallop / transcomb = %f", xx1[1] / xx1[3]));
+print(sprintf("TRAINING STAR: scallop / stringtie = %f", xx1[4] / xx1[5]));
+print(sprintf("TRAINING STAR: scallop / transcomb = %f", xx1[4] / xx1[6]));
+print(sprintf("TRAINING HISAT: scallop / stringtie = %f", xx1[7] / xx1[8]));
 
 data = read.table(paste(encode10, "test.quant3.zero", sep=""));
 for (k in seq(1, 8))
 {
-	xx2[k] = mean(data[6:10, k * 2 + 0]);
+	xx2[k] = mean(data[, k * 2 + 0]);
 }
 print(sprintf("TESTING TopHat2: scallop / stringtie = %f", xx2[1] / xx2[4]));
 print(sprintf("TESTING TopHat2: scallop / transcomb = %f", xx2[1] / xx2[7]));
-print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[2] / xx2[5]));
-print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[2] / xx2[8]));
-print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[3] / xx2[6]));
+print(sprintf("TESTING STAR: scallop / stringtie = %f", xx2[4] / xx2[5]));
+print(sprintf("TESTING STAR: scallop / transcomb = %f", xx2[4] / xx2[6]));
+print(sprintf("TESTING HISAT: scallop / stringtie = %f", xx2[7] / xx2[8]));
 
 xx = xx1 * 0.5 + xx2 * 0.5;
-print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[4]));
-print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[7]));
-print(sprintf("ALL STAR: scallop / stringtie = %f", xx[2] / xx[5]));
-print(sprintf("ALL STAR: scallop / transcomb = %f", xx[2] / xx[8]));
-print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
+print(sprintf("ALL TopHat2: scallop / stringtie = %f", xx[1] / xx[2]));
+print(sprintf("ALL TopHat2: scallop / transcomb = %f", xx[1] / xx[3]));
+print(sprintf("ALL STAR: scallop / stringtie = %f", xx[4] / xx[5]));
+print(sprintf("ALL STAR: scallop / transcomb = %f", xx[4] / xx[6]));
+print(sprintf("ALL HISAT: scallop / stringtie = %f", xx[7] / xx[8]));
 print("\n");
 
 
