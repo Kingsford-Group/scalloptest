@@ -322,11 +322,11 @@ summary.class <- function(datafile)
 	xx = t(xx);
 	yy = t(yy);
 
-	print(sprintf("TopHat2: scallop / stringtie = %f", xx[1] / xx[4]));
-	print(sprintf("TopHat2: scallop / transcomb = %f", xx[1] / xx[7]));
-	print(sprintf("STAR: scallop / stringtie = %f", xx[2] / xx[5]));
-	print(sprintf("STAR: scallop / transcomb = %f", xx[2] / xx[8]));
-	print(sprintf("HISAT: scallop / transcomb = %f", xx[3] / xx[6]));
+	print(sprintf("TopHat2: scallop / stringtie = %f", xx[1] / xx[2]));
+	print(sprintf("TopHat2: scallop / transcomb = %f", xx[1] / xx[3]));
+	print(sprintf("STAR: scallop / stringtie = %f", xx[4] / xx[5]));
+	print(sprintf("STAR: scallop / transcomb = %f", xx[4] / xx[6]));
+	print(sprintf("HISAT: scallop / transcomb = %f", xx[7] / xx[8]));
 }
 
 print("EXON 2-3: TRAINING");
