@@ -393,6 +393,7 @@ print(sprintf("TopHat2: transcomb / stringtie = %f", xx[7] / xx[4]));
 print(sprintf("STAR: scallop / stringtie = %f", xx[2] / xx[5]));
 print(sprintf("STAR: transcomb / stringtie = %f", xx[8] / xx[5]));
 print(sprintf("HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
+print("\n");
 
 ## analysis encode65 
 print("encode65:");
@@ -410,7 +411,6 @@ for (k in seq(1, 2))
 	xx1[k] = mean(data[, k * 2]);
 }
 print(sprintf("default.correct2: scallop / stringtie = %f", xx1[1] / xx1[2]));
-
 
 data = read.table(paste(encode65, "multi.default.precision3", sep=""));
 for (k in seq(1, 3))
@@ -462,3 +462,60 @@ for (k in seq(1, 2))
 }
 print(sprintf("zero.precision2: scallop = %f", xx1[1]));
 print(sprintf("zero.precision2: stringtie = %f", xx1[2]));
+print("\n");
+
+
+## 4 spike datasets
+print("spike-neat default sensitivity:");
+
+data = read.table(paste(sequin, "spike.multi.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx1[k] = mean(data[, k * 2 + 0]);
+}
+print(sprintf("spike4 TopHat2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("spike4 TopHat2: scallop / transcomb = %f", xx1[1] / xx1[3]));
+print(sprintf("spike4 STAR: scallop / stringtie = %f", xx1[4] / xx1[5]));
+print(sprintf("spike4 STAR: scallop / transcomb = %f", xx1[4] / xx1[6]));
+print(sprintf("spike4 HISAT: scallop / stringtie = %f", xx1[7] / xx1[8]));
+
+data = read.table(paste(sequin, "neat.multi.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx2[k] = mean(data[, k * 2 + 0]);
+}
+print(sprintf("neat4 TopHat2: scallop / stringtie = %f", xx2[1] / xx2[2]));
+print(sprintf("neat4 TopHat2: scallop / transcomb = %f", xx2[1] / xx2[3]));
+print(sprintf("neat4 STAR: scallop / stringtie = %f", xx2[4] / xx2[5]));
+print(sprintf("neat4 STAR: scallop / transcomb = %f", xx2[4] / xx2[6]));
+print(sprintf("neat4 HISAT: scallop / stringtie = %f", xx2[7] / xx2[8]));
+
+print("spike-neat default precision:");
+
+data = read.table(paste(sequin, "spike.multi.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("spike4 TopHat2:    scallop = %f", xx1[1]));
+print(sprintf("spike4 TopHat2:  stringtie = %f", xx1[2]));
+print(sprintf("spike4 TopHat2:  transcomb = %f", xx1[3]));
+print(sprintf("spike4 STAR:    scallop = %f", xx1[4]));
+print(sprintf("spike4 STAR:  stringtie = %f", xx1[5]));
+print(sprintf("spike4 STAR:  transcomb = %f", xx1[6]));
+print(sprintf("spike4 HISAT:    scallop = %f", xx1[7]));
+print(sprintf("spike4 HISAT:  stringtie = %f", xx1[8]));
+
+data = read.table(paste(sequin, "neat.multi.default", sep=""));
+for (k in seq(1, 8))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("neat4 TopHat2:    scallop = %f", xx1[1]));
+print(sprintf("neat4 TopHat2:  stringtie = %f", xx1[2]));
+print(sprintf("neat4 TopHat2:  transcomb = %f", xx1[3]));
+print(sprintf("neat4 STAR:    scallop = %f", xx1[4]));
+print(sprintf("neat4 STAR:  stringtie = %f", xx1[5]));
+print(sprintf("neat4 STAR:  transcomb = %f", xx1[6]));
+print(sprintf("neat4 HISAT:    scallop = %f", xx1[7]));
+print(sprintf("neat4 HISAT:  stringtie = %f", xx1[8]));
