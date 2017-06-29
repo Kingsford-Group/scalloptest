@@ -394,4 +394,71 @@ print(sprintf("STAR: scallop / stringtie = %f", xx[2] / xx[5]));
 print(sprintf("STAR: transcomb / stringtie = %f", xx[8] / xx[5]));
 print(sprintf("HISAT: scallop / stringtie = %f", xx[3] / xx[6]));
 
+## analysis encode65 
+print("encode65:");
+data = read.table(paste(encode65, "multi.default.correct3", sep=""));
+for (k in seq(1, 3))
+{
+	xx1[k] = mean(data[, k * 2]);
+}
+print(sprintf("default.correct3: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("default.correct3: scallop / transcomb = %f", xx1[1] / xx1[3]));
 
+data = read.table(paste(encode65, "multi.default.correct2", sep=""));
+for (k in seq(1, 2))
+{
+	xx1[k] = mean(data[, k * 2]);
+}
+print(sprintf("default.correct2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+
+
+data = read.table(paste(encode65, "multi.default.precision3", sep=""));
+for (k in seq(1, 3))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("default.precision3: scallop = %f", xx1[1]));
+print(sprintf("default.precision3: stringtie = %f", xx1[2]));
+print(sprintf("default.precision3: transcomb = %f", xx1[3]));
+
+data = read.table(paste(encode65, "multi.default.precision2", sep=""));
+for (k in seq(1, 2))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("default.precision2: scallop = %f", xx1[1]));
+print(sprintf("default.precision2: stringtie = %f", xx1[2]));
+
+
+data = read.table(paste(encode65, "multi.zero.correct3", sep=""));
+for (k in seq(1, 3))
+{
+	xx1[k] = mean(data[, k * 2]);
+}
+print(sprintf("zero.correct3: scallop / stringtie = %f", xx1[1] / xx1[2]));
+print(sprintf("zero.correct3: scallop / transcomb = %f", xx1[1] / xx1[3]));
+
+data = read.table(paste(encode65, "multi.zero.correct2", sep=""));
+for (k in seq(1, 2))
+{
+	xx1[k] = mean(data[, k * 2]);
+}
+print(sprintf("zero.correct2: scallop / stringtie = %f", xx1[1] / xx1[2]));
+
+
+data = read.table(paste(encode65, "multi.zero.precision3", sep=""));
+for (k in seq(1, 3))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("zero.precision3: scallop = %f", xx1[1]));
+print(sprintf("zero.precision3: stringtie = %f", xx1[2]));
+print(sprintf("zero.precision3: transcomb = %f", xx1[3]));
+
+data = read.table(paste(encode65, "multi.zero.precision2", sep=""));
+for (k in seq(1, 2))
+{
+	xx1[k] = mean(data[, k * 2 + 1]);
+}
+print(sprintf("zero.precision2: scallop = %f", xx1[1]));
+print(sprintf("zero.precision2: stringtie = %f", xx1[2]));
