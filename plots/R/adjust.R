@@ -135,7 +135,7 @@ plot.precision2.summary <- function(datafile, texfile)
 
 	axis(1, at = c(1.0), tick = FALSE, labels = c("unstranded"), mgp = c(0,0.5,0));
 	axis(2, mgp = c(0, 0.375, 0.2), tck = -0.05);
-	mtext("Precision", 2, line = 1.6);
+	mtext("Adjusted Precision", 2, line = 1.6);
 	error.bar(barx, xx[q], yy[q]);
 	dev.off();
 }
@@ -192,7 +192,7 @@ plot.precision3.summary <- function(datafile, texfile)
 
 	axis(1, at = c(1.0), tick = FALSE, labels = c("stranded"), mgp = c(0,0.5,0));
 	axis(2, mgp = c(0, 0.375, 0.2), tck = -0.05);
-	mtext("Precision", 2, line = 1.6);
+	mtext("Adjusted Precision", 2, line = 1.6);
 	error.bar(barx, xx[q], yy[q]);
 
 	dev.off();
