@@ -4,14 +4,20 @@ This repository tests and compares the performance of our released transcript as
 [**Scallop**](https://github.com/Kingsford-Group/scallop) with other two leading transcript assemblers,
 [StringTie](https://ccb.jhu.edu/software/stringtie/) and
 [TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/).
-The datasets, methods, and results are described in our pre-print
+Please refer to our pre-print
 at [bioRxiv](http://biorxiv.org/content/early/2017/04/03/123612).
-Here we provide scripts to download datasets, run the three methods, evaluated the
-predicted transcripts, and report the results.
-
 A **podcast** about Scallop (thanks to [Roman Cheplyaka](https://ro-che.info/)) 
 is available at [bioinformatics.chat](https://bioinformatics.chat/scallop)
 and [iTunes](https://itunes.apple.com/us/podcast/the-bioinformatics-chat/id1227281398). 
+Here we provide scripts to download datasets, run the three methods, evaluated the
+predicted transcripts, and reproduce the results and figures in the paper.
+
+The pipeline involves in the followint four steps:
+
+1. Download necessary datasets (`data` directory).
+2. Download and/or compile necessary programs (`programs` directory).
+3. Run the methods to produce results (`results` directory).
+4. Summarize results and produce figures (`plots` directory).
 
 # Datasets
 We compare the three methods on two datasets. The first dataset, namely **ENCODE10**,
