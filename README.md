@@ -58,11 +58,23 @@ The downloaded files will appear under `data/encode65`.
 **NOTE:** The total 65 reads alignments files take about 390GB storage space.
 
 
-To evaluate the assembled transcripts by each method, we use human annotation database as reference. 
-We align all samples in **encode10** to GRCh38. For samples in **encode65**, some of
-them are aligned to GRCh38, and some of them are aligned to GRCh37
-(see `bin/encode15.list` and `bin/encode65.list` for details).
-Use the following script in `bin` to download annotations for GRCh38 and GRCh37:
+## **sequin**
+The third dataset, namely **sequin**,
+contains 8 spike-in RNA-seq samples (see [paper](http://www.nature.com/nmeth/journal/v13/n9/full/nmeth.3958.html)).
+Again, for each of these 8 samples, we align it with three RNA-seq aligners,
+[TopHat2](https://ccb.jhu.edu/software/tophat/index.shtml),
+[STAR](https://github.com/alexdobin/STAR), and
+[HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
+We have uploaded all these reads alignments to CMU box.
+Use this link [(**download sequin**)](https://cmu.box.com/s/w2qex8ht0obu2rsxpx2y08m47jed8t8i) to download these files.
+Please keep the identical directory structure and files names
+(i.e., `data/sequin/ACCESSION/ALIGNER.sort.bam`) as we used there.
+
+
+## Annotations
+For **encode10** and **encode65** datasets, we use human annotation database as reference;
+for **sequin**, we use the known synthetic annotation as reference.
+Use the following script in `data` to download annotations:
 ```
 ./download.annotation.sh
 ```
