@@ -20,8 +20,12 @@ The pipeline involves in the followint four steps:
 4. Summarize results and produce figures (`plots` directory).
 
 # Datasets
-We compare the three methods on three datasets, namely *encode10*, *encode65*, and *sequin*. 
-The first dataset, namely **ENCODE10**,
+We compare the three methods on three datasets, namely **encode10**, **encode65**, and **sequin**. 
+Besides, we also need the annotation files for evaluation purposes.
+In directory `data`, we provide metadata for these datasets, and also provide scripts to download them.
+
+## **encode10**
+The first dataset, namely **encode10**,
 contains 10 human RNA-seq samples downloaded from [ENCODE project (2003--2012)](https://genome.ucsc.edu/ENCODE/).
 All these samples are sequenced with strand-specific and paired-end protocols.
 For each of these 10 samples, we align it with three RNA-seq aligners,
@@ -29,7 +33,7 @@ For each of these 10 samples, we align it with three RNA-seq aligners,
 [STAR](https://github.com/alexdobin/STAR), and
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
 We have uploaded all these reads alignments to CMU box.
-Use this link [(**DOWNLOAD ENCODE10**)](https://cmu.box.com/s/1h6z11ee7ks2ij5xvnc8n9z9gdjeet52) to download these files.
+Use this link [(**DOWNLOAD encode10**)](https://cmu.box.com/s/1h6z11ee7ks2ij5xvnc8n9z9gdjeet52) to download these files.
 Four reads alignment files are splitted and then uploaded due to single file size limit of CMU box:
 all the three alignments of SRR387661 and the tophat alignment of SRR534307.
 You need to merge them after downloading, for example:
@@ -42,7 +46,7 @@ Please keep the identical directory structure and files names
 (i.e., `data/encode10/ACCESSION/ALIGNER.sort.bam`) as we used there.
 
 
-The second dataset, namely **ENCODE65**,
+The second dataset, namely **encode65**,
 contains 65 human RNA-seq samples downloaded from [ENCODE project (2013--present)](https://www.encodeproject.org/).
 This dataset includes 50 strand-specific samples and 15 non-strand samples.
 These samples have pre-computed reads alignments, and can be downloaded by the script in `bin` directory.
@@ -54,7 +58,7 @@ The downloaded files will appear under `data/encode65`.
 
 
 To evaluate the assembled transcripts by each method, we use human annotation database as reference. 
-We align all samples in **ENCODE10** to GRCh38. For samples in **ENCODE65**, some of
+We align all samples in **encode10** to GRCh38. For samples in **encode65**, some of
 them are aligned to GRCh38, and some of them are aligned to GRCh37
 (see `bin/encode15.list` and `bin/encode65.list` for details).
 Use the following script in `bin` to download annotations for GRCh38 and GRCh37:
