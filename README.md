@@ -104,26 +104,19 @@ in `programs` directory.
 
 # Run the Methods
 
-Once the datasets and programs are all available, use the following scripts in `bin`
-to run the three assemblers on the datasets:
+Once the datasets and programs are all available, use the following scripts in `results`
+to run the methods assemblers on the datasets:
 ```
-./run.encode10.sh [-c coverage]
-./run.encode65.sh [-c coverage]
+./run.encode10.sh
+./run.encode65.sh
+./run.sequin.sh
 ```
-Both scripts takes parameter `-c`, the *minimum coverage threshold*,
-which filters the predicted transcripts with coverage less than this value. 
-This parameter can be set as `default`, or any float value that is larger than 0 (cannot be exactly 0).
-The default value of `-c` is `default`, which run the three methods with their default settings.
-These two scripts shall also invoke `gffcompare` to evaluate the assembled transcripts. 
-All results shall appear under directory `results`.
+You may need to modify these scripts to run the methods with different parameters.
 
-# Report Accuracy
 
-Once the results have been generated, one can use the following scripts in `bin` to summarize the accuracy of the three assemblers:
+# Analysis Results and Reproduce Figures
+
+Once the results have been generated, one can use the following scripts in `plots` to reproduce the figures:
 ```
-./collect.encode10.sh [-c coverage]
-./collect.encode65.sh [-c coverage]
+./build.figures.sh
 ```
-The `-c` parameter should match the one used to run the three methods. 
-The summarized accuracy, including `# correct transcritps` and `precision` for both multi-exon transcripts
-and single-exon transcritps, shall be printed on standard output.
