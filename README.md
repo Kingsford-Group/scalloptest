@@ -20,7 +20,8 @@ The pipeline involves in the followint four steps:
 4. Summarize results and produce figures (`plots` directory).
 
 # Datasets
-We compare the three methods on two datasets. The first dataset, namely **ENCODE10**,
+We compare the three methods on three datasets, namely *encode10*, *encode65*, and *sequin*. 
+The first dataset, namely **ENCODE10**,
 contains 10 human RNA-seq samples downloaded from [ENCODE project (2003--2012)](https://genome.ucsc.edu/ENCODE/).
 All these samples are sequenced with strand-specific and paired-end protocols.
 For each of these 10 samples, we align it with three RNA-seq aligners,
