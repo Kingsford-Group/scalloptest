@@ -90,12 +90,17 @@ Program | Version | Description
 [Scallop](https://github.com/Kingsford-Group/scallop) | v0.9.8 | Transcript assembler
 [StringTie](https://ccb.jhu.edu/software/stringtie/) | v1.3.2d | Transcript assembler
 [TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/) | v.1.0 | Transcript assembler
+[Cufflinks](http://cole-trapnell-lab.github.io/cufflinks/) | v2.2.1 | Transcript assembler
 [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) | v0.9.9c | Evaluate assembled transcripts
+[gtfcuff](https://github.com/Kingsford-Group/rnaseqtools) |  | RNA-seq tool
+[gtfformat](https://github.com/Kingsford-Group/rnaseqtools) |  | RNA-seq tool
+[gtfmerge](https://github.com/Kingsford-Group/rnaseqtools) |  | RNA-seq tool
 
-You need to download (Scallop, StringTie and TransComb provide binary versions) or complile them.
-After that link these four programs to `programs` directory.
+You need to download and/or complile them,
+and then link them to `programs` directory.
 Make sure that the program names are in lower cases (i.e., `scallop`, `stringtie`, `transcomb`, and `gffcompare`)
 in `programs` directory.
+
 
 # Run the Methods
 
