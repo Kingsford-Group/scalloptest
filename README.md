@@ -50,7 +50,7 @@ Please keep the identical directory structure and files names
 The second dataset, namely **encode65**,
 contains 65 human RNA-seq samples downloaded from [ENCODE project (2013--present)](https://www.encodeproject.org/).
 This dataset includes 50 strand-specific samples and 15 non-strand samples.
-These samples have pre-computed reads alignments, and can be downloaded by the script in `bin` directory.
+These samples have pre-computed reads alignments, and can be downloaded by the script in `data` directory.
 ```
 ./download.encode65.sh
 ```
