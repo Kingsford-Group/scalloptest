@@ -8,3 +8,6 @@ wget ftp://ftp.ensembl.org/pub/grch37/release-87/gtf/homo_sapiens/Homo_sapiens.G
 
 gzip -d $dir/GRCh38.gtf.gz
 gzip -d $dir/GRCh37.gtf.gz
+
+wget https://s3.amazonaws.com/sequins/annotations/A.R.1.2.gtf -O $dir/chrIS.gtf
+cat $dir/chrIS.gtf | sed 's/chrIS/IS/g' > $dir/is.gtf
