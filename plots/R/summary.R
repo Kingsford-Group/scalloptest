@@ -519,3 +519,28 @@ print(sprintf("neat4 STAR:  stringtie = %f", xx1[5]));
 print(sprintf("neat4 STAR:  transcomb = %f", xx1[6]));
 print(sprintf("neat4 HISAT:    scallop = %f", xx1[7]));
 print(sprintf("neat4 HISAT:  stringtie = %f", xx1[8]));
+
+# analysis venn.aliger
+print("venn aligner:");
+data = read.table(paste(encode10, "venn.algo", sep=""));
+x = as.matrix(data[,2:18]);
+x1 = x[,1] + x[,2] + x[,3] - x[,4] - x[,5] - x[,6] + x[,7];
+x2 = x[,8] + x[,9] + x[,10] - x[,11] - x[,12] - x[,13] + x[,14];
+x3 = x[,15] + x[,16] - x[,17]
+
+for (k in seq(1, 10))
+{
+	print(sprintf("TopHat: dataset %d union = %d", k, x1[k]));
+}
+for (k in seq(1, 10))
+{
+	print(sprintf("STAR: dataset %d union = %d", k, x2[k]));
+}
+for (k in seq(1, 10))
+{
+	print(sprintf("HISAT: dataset %d union = %d", k, x3[k]));
+}
+
+print(sprintf("TopHat2: intersection / union = %f", mean(x[,7]) / mean(x1)));
+print(sprintf("STAR: intersection / union = %f", mean(x[,14]) / mean(x2)));
+print(sprintf("HISAT2: intersection / union = %f", mean(x[,17]) / mean(x3)));
