@@ -1,9 +1,13 @@
 #!/bin/bash
 
+if [ "$#" != "1" ]; then
+	echo "$0 collectdir"
+	exit
+fi
+
 dir=`pwd`
-bin=$dir/../programs
+result=$1
 datadir=$dir/../data
-result=$dir/encode10/collect.B759
 covdir=$result/cov
 testcov=$result/test.cov
 traincov=$result/train.cov

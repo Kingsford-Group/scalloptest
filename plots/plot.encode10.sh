@@ -12,6 +12,7 @@ texdir=$dir/tex
 ./plot.encode10.accuracy.sh $cdir
 ./plot.encode10.auc.sh $cdir
 ./plot.encode10.quant.sh $cdir
+./plot.encode10.cov.sh $cdir
 
 # plot training
 outdir=$dir/encode10/training

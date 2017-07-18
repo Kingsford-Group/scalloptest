@@ -1,7 +1,7 @@
 plot.cov = function(accfile1, accfile2, covfile1, covfile2, texfile)
 {
 	library("tikzDevice");
-	tikz(texfile, width = 8, height = 5);
+	tikz(texfile, width = 6, height = 6);
 	acc1 = read.table(accfile1);
 	acc2 = read.table(accfile2);
 	cov1 = read.table(covfile1);

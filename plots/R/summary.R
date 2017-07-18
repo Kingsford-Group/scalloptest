@@ -544,3 +544,63 @@ for (k in seq(1, 10))
 print(sprintf("TopHat2: intersection / union = %f", mean(x[,7]) / mean(x1)));
 print(sprintf("STAR: intersection / union = %f", mean(x[,14]) / mean(x2)));
 print(sprintf("HISAT2: intersection / union = %f", mean(x[,17]) / mean(x3)));
+
+
+# coverage correlation
+
+acc1 = read.table(paste(encode10, "test.multi.default", sep = ""));
+acc2 = read.table(paste(encode10, "train.multi.default", sep = ""));
+cov1 = read.table(paste(encode10, "test.cov", sep = ""));
+cov2 = read.table(paste(encode10, "train.cov", sep = ""));
+
+cov.th = cov1[,3] / 1000000000;
+cov.st = cov1[,7] / 1000000000;
+cov.hi = cov1[,11] / 1000000000;
+cov.th[6:10] = cov2[,3] / 1000000000;
+cov.st[6:10] = cov2[,7] / 1000000000;
+cov.hi[6:10] = cov2[,11] / 1000000000;
+
+sc.th = acc1[,2];
+st.th = acc1[,4];
+tc.th = acc1[,6];
+sc.st = acc1[,8];
+st.st = acc1[,10];
+tc.st = acc1[,12];
+sc.hi = acc1[,14];
+st.hi = acc1[,16];
+
+sc.th[6:10] = acc2[,2];
+st.th[6:10] = acc2[,4];
+tc.th[6:10] = acc2[,6];
+sc.st[6:10] = acc2[,8];
+st.st[6:10] = acc2[,10];
+tc.st[6:10] = acc2[,12];
+sc.hi[6:10] = acc2[,14];
+st.hi[6:10] = acc2[,16];
+
+cov2 = c(cov.th, cov.st);
+cov3 = c(cov.th, cov.st, cov.hi);
+sc = c(sc.th, sc.st, sc.hi);
+st = c(st.th, st.st, st.hi);
+tc = c(tc.th, tc.st);
+
+scx = cor(sc, cov3);
+stx = cor(st, cov3);
+tcx = cor(tc, cov2);
+
+
+print(sprintf("correlation scallop tophat = %f", cor(sc.th, cov.th)));
+print(sprintf("correlation scallop star = %f", cor(sc.st, cov.st)));
+print(sprintf("correlation scallop hisat = %f", cor(sc.hi, cov.hi)));
+
+print(sprintf("correlation stringtie tophat = %f", cor(st.th, cov.th)));
+print(sprintf("correlation stringtie star = %f", cor(st.st, cov.st)));
+print(sprintf("correlation stringtie hisat = %f", cor(st.hi, cov.hi)));
+
+print(sprintf("correlation transcomb tophat = %f", cor(tc.th, cov.th)));
+print(sprintf("correlation transcomb star = %f", cor(tc.st, cov.st)));
+
+print(sprintf("coverage correlation with scallop = %f", scx));
+print(sprintf("coverage correlation with stringtie = %f", stx));
+print(sprintf("coverage correlation with transcomb = %f", tcx));
+

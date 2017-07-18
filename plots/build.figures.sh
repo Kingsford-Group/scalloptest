@@ -13,6 +13,7 @@
 figdir=./figures
 mkdir -p $figdir
 
+cp encode10/cov/cov.pdf $figdir
 cp encode10/training/training.pdf $figdir
 cp encode10/testing/testing.pdf $figdir
 cp encode10/venn/venn.pdf $figdir
