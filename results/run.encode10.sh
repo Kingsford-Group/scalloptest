@@ -61,36 +61,17 @@ function make.scripts
 	done
 }
 
-make.scripts cufflinks default 999
-
-#make.scripts stringtie 0.01 0.01
-#make.scripts transcomb 0.01 0.01
-
-#make.scripts stringtie 0621.0.01 0.01
-#make.scripts stringtie 0621.1 1
-#make.scripts stringtie 0621.2.5 2.5
-#make.scripts stringtie 0621.5 5
-#make.scripts stringtie 0621.7.5 7.5
-#make.scripts stringtie 0621.10 10
-#make.scripts stringtie 0621.25 25
-#make.scripts stringtie 0621.50 50
-#make.scripts stringtie 0621.75 75
-#make.scripts stringtie 0621.100 100
-
-#make.scripts transcomb 0620.0.01 0.01
-#make.scripts transcomb 0620.1 1
-#make.scripts transcomb 0620.2.5 2.5
-#make.scripts transcomb 0620.5 5
-#make.scripts transcomb 0620.7.5 7.5
-#make.scripts transcomb 0620.10 10
-#make.scripts transcomb 0620.25 25
-#make.scripts transcomb 0620.50 50
-#make.scripts transcomb 0620.75 75
-#make.scripts transcomb 0620.100 100
+## MODIFY THE FOLLOWING LINES TO SPECIFIY EXPERIMENTS
+#usage: make.scripts <scallop|stringtie|transcomb> <ID of this run> <minimum-coverage>
+make.scripts scallop test2 1.0
+#make.scripts cufflinks test2 999
+#make.scripts stringtie test2 1.0
+#make.scripts transcomb test2 0.01
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
+## MODIFY -P TO SPECIFY CPU CORES
 nohup cat $xarglist | xargs -L 1 -I CMD -P 20 bash -c CMD > /tmp/null &

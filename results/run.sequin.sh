@@ -46,8 +46,7 @@ function make.scripts
 	
 		for aa in `echo $aligns`
 		do
-			bb="$aa"."$gm"
-			bam=$datadir/$id/$bb/$aa.sort.bam
+			bam=$datadir/$id/$aa.sort.bam
 	
 			if [ ! -s $bam ]; then
 				echo "make sure $bam is available"
@@ -61,14 +60,16 @@ function make.scripts
 	done
 }
 
-make.scripts scallop B759.2.5 2.5
-make.scripts scallop B759.7.5 7.5
-#make.scripts stringtie 0.01 0.01
-#make.scripts transcomb 0.01 0.01
+## MODIFY THE FOLLOWING LINES TO SPECIFIY EXPERIMENTS
+#usage: make.scripts <scallop|stringtie|transcomb> <ID of this run> <minimum-coverage>
+make.scripts scallop test1 1.0
+#make.scripts stringtie test1 2.5
+#make.scripts transcomb test1 0.01
 
 xarglist=`tempfile -d $dir`
 rm -f $xarglist
 
 cat $scripts | sort -R > $xarglist
 
+## MODIFY -P TO SPECIFY CPU CORES
 nohup cat $xarglist | xargs -L 1 -I CMD -P 10 bash -c CMD > /tmp/null &
