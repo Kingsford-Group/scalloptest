@@ -111,7 +111,12 @@ to run the methods assemblers on the datasets:
 ./run.encode65.sh
 ./run.sequin.sh
 ```
-You may need to modify these scripts to run the methods with different parameters.
+In each of these three scripts, you can modify it to run different
+methods (Scallop, StringTie, TransComb, and Cufflinks), and to run
+with different minimum coverage threshold. For each run,
+you need to specify a `run-id`, which will be used later on when 
+collecting the results. You can also modify the scripts to specify
+how many CPU cores you want to use to run the jobs in parallel.
 
 
 # Analysis Results and Reproduce Figures
