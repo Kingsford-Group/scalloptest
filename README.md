@@ -125,5 +125,6 @@ Once the results have been generated, one can use the following scripts in `plot
 ```
 ./build.figures.sh
 ```
-You may need to modify these scripts to match the `run-id(s)` you
+You may need to install R packages `VennDiagram` and `tikzDevice`.
+You may also need to modify these scripts to match the `run-id(s)` you
 specified when you run these assemblers.
