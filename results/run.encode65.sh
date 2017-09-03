@@ -53,7 +53,7 @@ function make.scripts
 
 ## MODIFY THE FOLLOWING LINES TO SPECIFIY EXPERIMENTS
 #usage: make.scripts <scallop|stringtie|transcomb> <ID of this run> <minimum-coverage>
-make.scripts scallop test3 0.01
+make.scripts scallop B673 default
 #make.scripts stringtie test3 0.01
 #make.scripts transcomb test3 0.01
 
@@ -63,4 +63,4 @@ rm -f $xarglist
 cat $scripts | sort -R > $xarglist
 
 ## MODIFY -P TO SPECIFY CPU CORES
-nohup cat $xarglist | xargs -L 1 -I CMD -P 40 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 10 bash -c CMD > /tmp/null &

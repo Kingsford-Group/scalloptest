@@ -43,6 +43,9 @@ function make.scripts
 			echo "make sure $gtf is available"
 			exit
 		fi
+
+		fq1=$datadir/$id/$id.Rd1.fq
+		fq2=$datadir/$id/$id.Rd2.fq
 	
 		for aa in `echo $aligns`
 		do
@@ -56,14 +59,15 @@ function make.scripts
 	
 			cur=$results/$id.$aa/$algo.$suffix
 	
-			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $quant" >> $scripts
+#echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $quant" >> $scripts
+			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $fq1 $fq2" >> $scripts
 		done
 	done
 }
 
 ## MODIFY THE FOLLOWING LINES TO SPECIFIY EXPERIMENTS
 #usage: make.scripts <scallop|stringtie|transcomb> <ID of this run> <minimum-coverage>
-make.scripts scallop test2 1.0
+make.scripts scallop B771 default
 #make.scripts cufflinks test2 999
 #make.scripts stringtie test2 1.0
 #make.scripts transcomb test2 0.01
@@ -74,4 +78,4 @@ rm -f $xarglist
 cat $scripts | sort -R > $xarglist
 
 ## MODIFY -P TO SPECIFY CPU CORES
-nohup cat $xarglist | xargs -L 1 -I CMD -P 20 bash -c CMD > /tmp/null &
+nohup cat $xarglist | xargs -L 1 -I CMD -P 30 bash -c CMD > /tmp/null &
