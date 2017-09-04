@@ -153,7 +153,7 @@ evaluate the assembled transcripts with respect to a reference annotation:
 gffcompare -o gffall -r ensembl.gtf scallop.gtf
 ```
 where `ensembl.gtf` is the 
-[ensembl annotation](goo.gl/cifLXecontent_copyCopy short URL)
+[ensembl annotation](https://goo.gl/cifLXe)
 This command will generate a file `gffall.scallop.gtf.map` defining which transcripts in `scallop.gtf`
 can be found in the `ensembl.gtf`.
 
