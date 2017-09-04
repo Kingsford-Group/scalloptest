@@ -147,7 +147,7 @@ scallop -i sort.bam -o scallop.gtf
 ```
 The assembled transcripts will be written to `scallop.gtf`.
 
-3. Use [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) to
+**Step 3:** Use [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) to
 evaluate the assembled transcripts with respect to a reference genome (for example,
 [ENSEMBL](ftp://ftp.ensembl.org/pub/release-90/gtf/homo_sapiens/Homo_sapiens.GRCh38.90.gtf.gz)
 ```
