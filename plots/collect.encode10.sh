@@ -1,8 +1,12 @@
 #!/bin/bash
 
 list=../data/encode10.list
-summary=./encode10/collect.B759
+#summary=./encode10/collect.B759
+
+summary=./encode10/collect.B771
 mkdir -p $summary
+./collect.encode10.salmon.sh > $summary/salmon
+exit
 
 # collect multi.cuff-exon results with default parameters (for cufflinks)
 rm -rf $summary/train.multi.cuff.default
