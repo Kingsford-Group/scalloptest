@@ -148,12 +148,12 @@ scallop -i sort.bam -o scallop.gtf
 The assembled transcripts will be written to `scallop.gtf`.
 
 **Step 3:** Use [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) to
-evaluate the assembled transcripts with respect to a reference genome (for example,
-[ENSEMBL](ftp://ftp.ensembl.org/pub/release-90/gtf/homo_sapiens/Homo_sapiens.GRCh38.90.gtf.gz)
+evaluate the assembled transcripts with respect to a reference annotation:
 ```
 gffcompare -o gffall -r ensembl.gtf scallop.gtf
 ```
-This will generate a file `gffall.scallop.gtf.map` defining which transcripts in `scallop.gtf`
+where `ensembl.gtf` is the reference annotation [ENSEMBL](ftp://ftp.ensembl.org/pub/release-90/gtf/homo_sapiens/Homo_sapiens.GRCh38.90.gtf.gz).
+This command will generate a file `gffall.scallop.gtf.map` defining which transcripts in `scallop.gtf`
 can be found in the `ensembl.gtf`.
 
 4. Union the assembled transcripts with the reference transcriptome. Specifically,
