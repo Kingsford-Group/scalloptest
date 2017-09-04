@@ -133,15 +133,19 @@ specified when you run these assemblers.
 # Quantification by Combining Scallop and Salmon
 
 We recommend users to perform RNA-seq quantification using the combination of Scallop and Salmon.
-This pipeline involves the following four steps:
+This pipeline involves the following steps:
 
-1. Align the reads to a reference genome (for example, with
+**Step 1** Align the reads to a reference genome (for example, with
 [TopHat2](https://ccb.jhu.edu/software/tophat/index.shtml),
 [STAR](https://github.com/alexdobin/STAR), or
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml))
 to obtain the reads alignment.
 
-2. Assemble the expressed transcripts with [Scallop](https://github.com/Kingsford-Group/scallop).
+**Step 2** Assemble the expressed transcripts with [Scallop](https://github.com/Kingsford-Group/scallop)
+```
+scallop -i sort.bam -o scallop.gtf
+```
+The assembled transcripts will be written to `scallop.gtf`.
 
 3. Use [gffcompare](http://ccb.jhu.edu/software/stringtie/gff.shtml) to
 evaluate the assembled transcripts with respect to a reference genome (for example,
