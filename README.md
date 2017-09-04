@@ -178,11 +178,11 @@ Finally, merge `unique.fa` and the reference transcriptome:
 cat unique.fa reference.fa > union.fa
 ```
 where reference.fa is the reference transcriptome, for example,
-[ensembl cDNA](ftp://ftp.ensembl.org/pub/release-90/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz)).
+[ensembl cDNA](https://goo.gl/rJdrEX).
 The unioned transcriptome will be written to `union.fa`.
 
 
-4. Run Salmon to quantify with respect to the above extended transcriptome.
+**Step 4:**  Run Salmon to quantify with respect to the above extended transcriptome.
 First, create Salmon index:
 ```
 salmon index -t union.fa -i salmon.index -p 4
