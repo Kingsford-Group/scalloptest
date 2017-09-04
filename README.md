@@ -158,14 +158,14 @@ This command will generate a file `gffall.scallop.gtf.map` defining which transc
 can be found in the `ensembl.gtf`.
 
 **Step 4:** Union the assembled transcripts with the reference transcriptome. Specifically,
-..1. Use our tool
+First, Use our tool
 [gtfcuff](https://github.com/Kingsford-Group/rnaseqtools) to fetch the transcripts that
 are only in `scallop.gtf`:
 ```
 gtfcuff puniq gffall.scallop.gtf.tmap scallop.gtf unique.gtf
 ```
 The uniquely expressed transcripts will be written to `unique.gtf`.
-..2. Extract the cDNAs of these transcripts in `unique.gtf` using tool
+Second, extract the cDNAs of these transcripts in `unique.gtf` using tool
 [gffread](http://ccb.jhu.edu/software/stringtie/gff.shtml):
 ```
 gffread unique.gtf -g genome -w unique.fa
