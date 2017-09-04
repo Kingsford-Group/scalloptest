@@ -182,7 +182,7 @@ where reference.fa is the reference transcriptome, for example,
 The unioned transcriptome will be written to `union.fa`.
 
 
-**Step 4:**  Run Salmon to quantify with respect to the above extended transcriptome.
+**Step 5:**  Run Salmon to quantify with respect to the above extended transcriptome.
 First, create Salmon index:
 ```
 salmon index -t union.fa -i salmon.index -p 4
