@@ -153,11 +153,11 @@ evaluate the assembled transcripts with respect to a reference annotation:
 gffcompare -o gffall -r ensembl.gtf scallop.gtf
 ```
 where `ensembl.gtf` is the 
-[ensembl annotation](https://goo.gl/cifLXe)
+[ensembl annotation](https://goo.gl/cifLXe).
 This command will generate a file `gffall.scallop.gtf.map` defining which transcripts in `scallop.gtf`
 can be found in the `ensembl.gtf`.
 
-4. Union the assembled transcripts with the reference transcriptome. Specifically,
+**Step 4:** Union the assembled transcripts with the reference transcriptome. Specifically,
 ..1. Use our tool
 [gtfcuff](https://github.com/Kingsford-Group/rnaseqtools) to fetch the transcripts that
 are only in `scallop.gtf`:
