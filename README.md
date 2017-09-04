@@ -171,9 +171,9 @@ Second, extract the cDNAs of these transcripts in `unique.gtf` using tool
 gffread unique.gtf -g genome -w unique.fa
 ```
 where `genome` is the reference genome sequences, for example 
-[ensembl](ftp://ftp.ensembl.org/pub/release-90/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.alt.fa.gz).
+[ensembl genome](https://goo.gl/V1V3B1).
 The cDNA sequences of the uniquely assembled transcripts will be written to `unique.fa`.
-..3. Merge `unique.fa` and the reference transcriptome: 
+Finally, merge `unique.fa` and the reference transcriptome: 
 ```
 cat unique.fa reference.fa > union.fa
 ```
