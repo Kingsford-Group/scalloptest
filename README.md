@@ -4,8 +4,8 @@ This repository tests and compares the performance of our released transcript as
 [**Scallop**](https://github.com/Kingsford-Group/scallop) with other two leading transcript assemblers,
 [StringTie](https://ccb.jhu.edu/software/stringtie/) and
 [TransComb](https://sourceforge.net/projects/transcriptomeassembly/files/).
-Please refer to our pre-print
-at [bioRxiv](http://biorxiv.org/content/early/2017/04/03/123612).
+Please refer to our paper published at 
+[**Nature Biotechnology**](https://www.nature.com/articles/nbt.4020).
 A **podcast** about Scallop (thanks to [Roman Cheplyaka](https://ro-che.info/)) 
 is available at [bioinformatics.chat](https://bioinformatics.chat/scallop)
 and [iTunes](https://itunes.apple.com/us/podcast/the-bioinformatics-chat/id1227281398). 
