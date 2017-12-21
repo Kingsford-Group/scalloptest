@@ -1,14 +1,19 @@
 #!/bin/bash
 
-./collect.encode10.sh
+
+
+#./collect.encode10.sh
 #./collect.encode65.sh
 #./collect.sequin.sh
 
-#./plot.legend.sh
 
 #./plot.encode65.sh
 #./plot.sequin.sh
-./plot.encode10.sh
+#./plot.encode10.sh
+
+./plot.legend.sh
+
+exit
 
 figdir=./figures
 mkdir -p $figdir
