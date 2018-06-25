@@ -8,10 +8,10 @@
 
 
 #./plot.encode65.sh
-#./plot.sequin.sh
 #./plot.encode10.sh
+./plot.sequin.sh
 
-./plot.legend.sh
+#./plot.legend.sh
 
 exit
 

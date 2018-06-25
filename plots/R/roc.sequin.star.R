@@ -14,7 +14,7 @@ plot.roc = function(file, tt, texfile, flag, legendx, legendy)
 	q = seq(1, n / 2) * 2 - 1;
 
 # scale to number
-	x[,q] = x[,q] * 1.70378;
+#x[,q] = x[,q] * 1.70378;
 
 	xmin = min(x[,p]);
 	xmax = max(x[,p]);
@@ -37,7 +37,7 @@ plot.roc = function(file, tt, texfile, flag, legendx, legendy)
 	if(flag == 1)
 	{
 #mtext("Sensitivity", las = 3, side = 2, line =1.20, outer = FALSE);
-		mtext("Correct", las = 3, side = 2, line =1.20, outer = FALSE);
+		mtext("Recall", las = 3, side = 2, line =1.20, outer = FALSE);
 	}
 
 	for (k in c(2,5,8))

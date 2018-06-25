@@ -6,7 +6,6 @@ if [ "$#" != "1" ]; then
 fi
 
 dir=`pwd`
-list=$dir/../data/sequin.list
 
 tmpfile=$dir/tmpfile.R
 rm -rf $tmpfile
@@ -14,23 +13,18 @@ rm -rf $tmpfile
 sumdir=$1
 
 echo "library(\"tikzDevice\")" > $tmpfile
-echo "source(\"$dir/R/roc.sequin.star.R\")" >> $tmpfile
+echo "source(\"$dir/R/time.star.R\")" >> $tmpfile
 
-for k in `cat $list`
-do
-	id=`echo $k | cut -f 1 -d ":"`
-	ss=`echo $k | cut -f 4 -d ":"`
-	echo "plot.roc(\"$sumdir/$id\", \"$ss\", \"$id.tex\", 1, 0.6, 0.2)" >> $tmpfile
-done
+echo "plot.time(\"$sumdir/time\", \"time.tex\")" >> $tmpfile
 
-outdir=$dir/sequin/roc.star
+outdir=$dir/encode10/time.star
 mkdir -p $outdir
 
 cd $outdir
 
 R CMD BATCH $tmpfile
 
-for k in `cat $list`
+for k in `echo "time"`
 do
 	id=`echo $k | cut -f 1 -d ":"`
 	$dir/wrap.sh $id.tex

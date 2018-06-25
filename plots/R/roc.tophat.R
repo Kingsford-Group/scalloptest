@@ -8,13 +8,11 @@ plot.roc = function(file, tt, texfile, flag, legendx, legendy)
 	cexs = c(0.8,0.8,0.75,0.8,0.8,0.75,0.8,0.8);
 #pchs = c(22,21,24,22,21,24,22,21);
 #pchs = c(0,1,2,0,1,2,0,1);
-	pchs = c(15,16,17,15,16,17,15,16);
+#pchs = c(15,16,17,15,16,17,15,16);
+	pchs = c(16,16,16,16,16,16,16,16);
 	fcol = c(2,3,4,5,6,7,8,9);
 	p = seq(1, n / 2) * 2 - 0;
 	q = seq(1, n / 2) * 2 - 1;
-
-# scale to number
-	x[,q] = x[,q] * 1.70378;
 
 	xmin = min(x[,p]);
 	xmax = max(x[,p]);
@@ -36,11 +34,10 @@ plot.roc = function(file, tt, texfile, flag, legendx, legendy)
 
 	if(flag == 1)
 	{
-#mtext("Sensitivity", las = 3, side = 2, line =1.20, outer = FALSE);
-		mtext("Correct", las = 3, side = 2, line =1.20, outer = FALSE);
+		mtext("Sensitivity", las = 3, side = 2, line =1.20, outer = FALSE);
 	}
 
-	for (k in c(2,5,8))
+	for (k in c(1,4,7))
 	{
 		a = x[k, p];
 		b = x[k, q];
