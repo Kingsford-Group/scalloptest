@@ -27,6 +27,7 @@ function make.scripts
 	fi
 
 	aligns="tophat star hisat"
+#aligns="star"
 
 	if [ "$algo" == "transcomb" ]; then
 		aligns="tophat star"
@@ -59,15 +60,17 @@ function make.scripts
 	
 			cur=$results/$id.$aa/$algo.$suffix
 	
-#echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $quant" >> $scripts
-			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $fq1 $fq2" >> $scripts
+			echo "./run.$algo.sh $cur $bam $gtf $coverage $ss" >> $scripts
+			#echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $quant" >> $scripts
+			#echo "./run.$algo.sh $cur $bam $gtf $coverage $ss $fq1 $fq2" >> $scripts
 		done
 	done
 }
 
+tag=`$bin/scallop --version`
 ## MODIFY THE FOLLOWING LINES TO SPECIFIY EXPERIMENTS
 #usage: make.scripts <scallop|stringtie|transcomb> <ID of this run> <minimum-coverage>
-make.scripts scallop B771 default
+make.scripts scallop $tag default
 #make.scripts cufflinks test2 999
 #make.scripts stringtie test2 1.0
 #make.scripts transcomb test2 0.01
