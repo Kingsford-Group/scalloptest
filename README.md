@@ -33,7 +33,7 @@ For each of these 10 samples, we align it with three RNA-seq aligners,
 [STAR](https://github.com/alexdobin/STAR), and
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
 Among them the STAR and HISAT2 alignments are
-available at [doi:10.26208/8c06-w247](https://doi.org/10.26208/8c06-w247).
+available at [doi:10.26208/8c06-w247](https://doi.org/10.26208/8c06-w247) (same data used in another research work).
 
 ## **encode65**
 The second dataset, namely **encode65**,
